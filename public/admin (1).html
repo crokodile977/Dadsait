@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Панель управления — НордВестГаз</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:15px}
+body{font-family:'Inter',sans-serif;background:#F0F4F8;color:#1C2B3A;min-height:100vh}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;font-family:'Inter',sans-serif}
+input,textarea,select{font-family:'Inter',sans-serif}
+
+:root{
+  --blue:#1557A7;--blue-dk:#0D3F7A;--blue-pale:#EAF2FC;--blue-pale2:#D6E8F9;
+  --ink:#1C2B3A;--ink-2:#3D5166;--ink-3:#607D97;--ink-4:#8FA5B8;
+  --bdr:#D4E3F0;--bg:#F0F4F8;--white:#fff;
+  --green:#15803D;--green-p:rgba(21,128,61,.1);
+  --amber:#B45309;--amber-p:rgba(180,83,9,.1);
+  --red:#B91C1C;--red-p:rgba(185,28,28,.08);
+  --trash:#6B4226;--trash-p:rgba(107,66,38,.08);
+  --sh:0 2px 12px rgba(21,87,167,.09);
+  --sh-lg:0 8px 32px rgba(21,87,167,.15);
+  --t:.2s ease;
+}
+
+/* ══ LOGIN ══ */
+#login-screen{position:fixed;inset:0;background:var(--blue-dk);display:flex;align-items:center;justify-content:center;z-index:1000}
+.login-box{background:#fff;padding:48px 40px;width:100%;max-width:380px;box-shadow:var(--sh-lg)}
+.login-logo{font-size:11px;font-weight:800;color:var(--blue);text-transform:uppercase;letter-spacing:.14em;margin-bottom:8px}
+.login-title{font-size:24px;font-weight:800;color:var(--ink);margin-bottom:4px}
+.login-sub{font-size:13px;color:var(--ink-3);margin-bottom:28px}
+.lf{margin-bottom:14px}
+.lf label{display:block;font-size:10px;font-weight:700;color:var(--ink-3);text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px}
+.lf input{width:100%;border:1.5px solid var(--bdr);padding:11px 13px;font-size:14px;color:var(--ink);outline:none;transition:var(--t)}
+.lf input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(21,87,167,.1)}
+.login-btn{width:100%;padding:13px;background:var(--blue);color:#fff;font-size:14px;font-weight:700;border:none;transition:var(--t)}
+.login-btn:hover{background:var(--blue-dk)}
+.login-err{display:none;font-size:12px;color:var(--red);text-align:center;margin-top:10px;font-weight:500}
+.login-hint{font-size:11px;color:var(--ink-4);text-align:center;margin-top:16px}
+.login-hint strong{color:var(--ink-3)}
+
+/* ══ APP SHELL ══ */
+#app{display:none}
+
+/* Sidebar */
+.sidebar{position:fixed;top:0;left:0;bottom:0;width:226px;background:#0C1B2A;display:flex;flex-direction:column;z-index:10;transition:var(--t)}
+.sb-logo{padding:20px 20px 16px;border-bottom:1px solid rgba(255,255,255,.06)}
+.sb-brand{font-size:15px;font-weight:800;color:#fff;letter-spacing:-.01em}
+.sb-brand span{color:#7DC3FF}
+.sb-tagline{font-size:10px;color:rgba(255,255,255,.3);margin-top:3px;letter-spacing:.04em}
+.sb-nav{padding:12px 0;flex:1;overflow-y:auto}
+.sb-sec{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:rgba(255,255,255,.22);padding:12px 20px 4px}
+.sb-a{display:flex;align-items:center;gap:10px;padding:9px 20px;font-size:13px;font-weight:500;color:rgba(255,255,255,.5);transition:var(--t);border-left:3px solid transparent;text-decoration:none}
+.sb-a:hover{color:#fff;background:rgba(255,255,255,.04)}
+.sb-a.on{color:#fff;background:rgba(255,255,255,.07);border-left-color:#7DC3FF}
+.sb-a svg{flex-shrink:0;width:15px;height:15px;opacity:.7}
+.sb-a.on svg,.sb-a:hover svg{opacity:1}
+.sb-chip{margin-left:auto;font-size:10px;font-weight:700;padding:2px 7px;border-radius:100px}
+.chip-blue{background:var(--blue);color:#fff}
+.chip-red{background:#B91C1C;color:#fff}
+.chip-amber{background:#92400E;color:#fff}
+.sb-bottom{padding:14px 20px;border-top:1px solid rgba(255,255,255,.06)}
+.sb-out{display:flex;align-items:center;gap:9px;font-size:13px;color:rgba(255,255,255,.35);background:none;border:none;width:100%;transition:var(--t)}
+.sb-out:hover{color:rgba(255,255,255,.75)}
+
+/* Main */
+.main{margin-left:226px;min-height:100vh;display:flex;flex-direction:column}
+.topbar{background:#fff;border-bottom:1px solid var(--bdr);padding:14px 28px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:5;gap:12px}
+.topbar-left{display:flex;align-items:center;gap:12px}
+.topbar-title{font-size:16px;font-weight:700;color:var(--ink)}
+.topbar-badge{font-size:11px;font-weight:700;padding:3px 9px;border-radius:100px}
+.topbar-date{font-size:13px;color:var(--ink-3)}
+.content{padding:24px 28px;flex:1}
+
+/* Pages */
+.pg{display:none}
+.pg.on{display:block}
+
+/* Stat row */
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
+.sc{background:#fff;border:1px solid var(--bdr);padding:20px 18px;box-shadow:var(--sh)}
+.sc .slbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3);margin-bottom:8px}
+.sc .sval{font-size:28px;font-weight:800;line-height:1;color:var(--ink)}
+.sc .ssub{font-size:12px;color:var(--ink-3);margin-top:5px}
+.sc.c-blue .sval{color:var(--blue)}
+.sc.c-red  .sval{color:var(--red)}
+.sc.c-amber .sval{color:var(--amber)}
+.sc.c-green .sval{color:var(--green)}
+
+/* Toolbar */
+.toolbar{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.search{display:flex;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--bdr);padding:8px 13px;flex:1;min-width:180px;max-width:300px}
+.search svg{color:var(--ink-3);flex-shrink:0;width:14px;height:14px}
+.search input{border:none;outline:none;font-size:14px;color:var(--ink);width:100%;background:transparent}
+.fbtns{display:flex;gap:3px;flex-wrap:wrap}
+.fbt{padding:7px 12px;font-size:12px;font-weight:600;border:1.5px solid var(--bdr);background:#fff;color:var(--ink-2);transition:var(--t)}
+.fbt:hover,.fbt.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.tb-right{margin-left:auto;display:flex;gap:8px}
+.icon-btn{display:flex;align-items:center;gap:6px;padding:8px 14px;font-size:12px;font-weight:700;border:1.5px solid var(--bdr);background:#fff;color:var(--ink-2);transition:var(--t)}
+.icon-btn:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-pale)}
+.icon-btn.danger:hover{border-color:var(--red);color:var(--red);background:var(--red-p)}
+.icon-btn svg{width:13px;height:13px;flex-shrink:0}
+
+/* Table */
+.tbl-wrap{background:#fff;border:1px solid var(--bdr);box-shadow:var(--sh);overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead tr{background:#F7FAFD;border-bottom:1.5px solid var(--bdr)}
+th{padding:11px 14px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3);text-align:left;white-space:nowrap;user-select:none}
+th.sort-asc::after{content:' ↑'}
+th.sort-desc::after{content:' ↓'}
+tbody tr{border-bottom:1px solid var(--bdr);transition:var(--t)}
+tbody tr:last-child{border-bottom:none}
+tbody tr:hover{background:#F7FAFD}
+tbody tr.is-new{border-left:3px solid var(--blue)}
+tbody tr.is-trash{opacity:.75}
+td{padding:12px 14px;vertical-align:middle}
+td.c-name{font-weight:600;color:var(--ink)}
+td.c-phone a{font-weight:700;color:var(--blue)}
+td.c-phone a:hover{text-decoration:underline}
+td.c-date{color:var(--ink-3);white-space:nowrap;font-size:12px}
+td.c-type{color:var(--ink-2)}
+td.c-note{color:var(--ink-3);max-width:160px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* Badges */
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;font-size:11px;font-weight:700;white-space:nowrap}
+.badge::before{content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.b-new   {background:rgba(21,87,167,.1);color:var(--blue)}.b-new::before{background:var(--blue)}
+.b-called{background:var(--amber-p);color:var(--amber)}.b-called::before{background:var(--amber)}
+.b-done  {background:var(--green-p);color:var(--green)}.b-done::before{background:var(--green)}
+.b-cancel{background:var(--red-p);color:var(--red)}.b-cancel::before{background:var(--red)}
+.b-trash {background:var(--trash-p);color:var(--trash)}.b-trash::before{background:var(--trash)}
+
+/* Row actions */
+.acts{display:flex;gap:3px;flex-wrap:nowrap}
+.act{padding:5px 9px;font-size:11px;font-weight:600;border:1.5px solid var(--bdr);background:#fff;color:var(--ink-2);transition:var(--t);white-space:nowrap}
+.act:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-pale)}
+.act.a-green:hover{border-color:var(--green);color:var(--green);background:var(--green-p)}
+.act.a-amber:hover{border-color:var(--amber);color:var(--amber);background:var(--amber-p)}
+.act.a-trash:hover{border-color:#8B5E3C;color:#6B4226;background:var(--trash-p)}
+.act.a-restore:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-pale)}
+.act.a-kill:hover{border-color:var(--red);color:var(--red);background:var(--red-p)}
+
+/* Trash timer */
+.days-left{font-size:11px;font-weight:600;white-space:nowrap}
+.days-ok{color:var(--amber)}
+.days-warn{color:var(--red)}
+
+/* Empty state */
+.empty-state{text-align:center;padding:56px 20px;color:var(--ink-3)}
+.empty-state svg{margin:0 auto 16px;width:52px;height:52px;opacity:.2}
+.empty-state p{font-size:15px;font-weight:600;color:var(--ink-2);margin-bottom:5px}
+.empty-state small{font-size:13px}
+
+/* Modal */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:500;display:none;align-items:center;justify-content:center;padding:16px}
+.overlay.on{display:flex}
+.modal{background:#fff;width:100%;max-width:520px;max-height:92vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.25);position:relative;display:flex;flex-direction:column}
+.mhead{padding:20px 22px 16px;border-bottom:1px solid var(--bdr);display:flex;align-items:flex-start;justify-content:space-between;gap:10px;position:sticky;top:0;background:#fff;z-index:1}
+.mhead::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--blue)}
+.mttl{font-size:16px;font-weight:800;color:var(--ink)}
+.mclose{background:none;border:none;color:var(--ink-3);padding:2px;transition:var(--t)}
+.mclose:hover{color:var(--ink)}
+.mbody{padding:20px 22px;flex:1}
+.mrow{display:flex;gap:14px;margin-bottom:14px}
+.mhalf{flex:1;min-width:0}
+.mlbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3);margin-bottom:4px}
+.mval{font-size:14px;color:var(--ink);font-weight:500;word-break:break-word}
+.mval a{color:var(--blue);font-weight:700}
+.m-sep{height:1px;background:var(--bdr);margin:16px 0}
+.mstatus-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.msbt{padding:8px 14px;font-size:12px;font-weight:700;border:1.5px solid var(--bdr);background:#fff;transition:var(--t)}
+.msbt:hover{opacity:.85}
+.ms-new   {border-color:var(--blue);background:var(--blue);color:#fff}
+.ms-called{border-color:var(--amber);background:var(--amber-p);color:var(--amber)}
+.ms-done  {border-color:var(--green);background:var(--green-p);color:var(--green)}
+.ms-cancel{border-color:var(--red);background:var(--red-p);color:var(--red)}
+.note-area{width:100%;border:1.5px solid var(--bdr);padding:10px 12px;font-size:13px;color:var(--ink);resize:vertical;min-height:76px;outline:none;transition:var(--t)}
+.note-area:focus{border-color:var(--blue)}
+.msave{width:100%;padding:12px;background:var(--blue);color:#fff;font-size:13px;font-weight:700;border:none;transition:var(--t);margin-top:14px}
+.msave:hover{background:var(--blue-dk)}
+.mtrash-warn{background:var(--trash-p);border:1px solid rgba(107,66,38,.2);padding:12px 14px;font-size:13px;color:var(--trash);margin-bottom:14px}
+
+/* Confirm dialog */
+.confirm-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:600;display:none;align-items:center;justify-content:center;padding:16px}
+.confirm-overlay.on{display:flex}
+.confirm-box{background:#fff;max-width:400px;width:100%;padding:28px 24px;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.confirm-box h3{font-size:17px;font-weight:800;color:var(--ink);margin-bottom:8px}
+.confirm-box p{font-size:14px;color:var(--ink-2);line-height:1.6;margin-bottom:20px}
+.confirm-btns{display:flex;gap:10px;justify-content:flex-end}
+.cbtn{padding:10px 20px;font-size:13px;font-weight:700;border:1.5px solid var(--bdr);background:#fff;transition:var(--t)}
+.cbtn:hover{background:var(--bg)}
+.cbtn.danger{background:var(--red);border-color:var(--red);color:#fff}
+.cbtn.danger:hover{background:#991B1B}
+
+/* Settings */
+.scard{background:#fff;border:1px solid var(--bdr);padding:24px;box-shadow:var(--sh);margin-bottom:16px;max-width:580px}
+.scard h3{font-size:15px;font-weight:700;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--bdr)}
+.sf{margin-bottom:13px}
+.sf label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--ink-3);margin-bottom:5px}
+.sf input{width:100%;border:1.5px solid var(--bdr);padding:10px 13px;font-size:14px;color:var(--ink);outline:none;transition:var(--t)}
+.sf input:focus{border-color:var(--blue)}
+.sbt{padding:11px 22px;background:var(--blue);color:#fff;font-size:13px;font-weight:700;border:none;transition:var(--t)}
+.sbt:hover{background:var(--blue-dk)}
+.dz{background:#fff;border:1px solid #FCA5A5;padding:20px;max-width:580px}
+.dz h3{font-size:14px;font-weight:700;color:var(--red);margin-bottom:8px}
+.dz p{font-size:13px;color:var(--ink-3);line-height:1.65;margin-bottom:14px}
+.dzt{display:flex;gap:10px;flex-wrap:wrap}
+.dbt{padding:9px 18px;font-size:13px;font-weight:700;border:none;transition:var(--t)}
+.dbt-red{background:var(--red);color:#fff}
+.dbt-red:hover{background:#991B1B}
+.dbt-amber{background:#92400E;color:#fff}
+.dbt-amber:hover{background:#78350F}
+
+/* Stats page */
+.bar-item{margin-bottom:12px}
+.bar-row{display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px}
+.bar-track{height:6px;background:var(--blue-pale2);border-radius:3px}
+.bar-fill{height:6px;background:var(--blue);border-radius:3px;transition:.5s ease}
+
+/* Notif */
+.notif{position:fixed;top:18px;right:18px;padding:11px 18px;font-size:13px;font-weight:600;box-shadow:var(--sh-lg);z-index:999;transform:translateY(-6px);opacity:0;transition:.28s ease;pointer-events:none;max-width:320px}
+.notif.on{transform:translateY(0);opacity:1}
+.notif-ok{background:var(--ink);color:#fff}
+.notif-err{background:var(--red);color:#fff}
+.notif-warn{background:#92400E;color:#fff}
+
+/* Responsive */
+@media(max-width:900px){
+  .stat-row{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:700px){
+  .sidebar{transform:translateX(-100%)}
+  .sidebar.mob-open{transform:translateX(0)}
+  .main{margin-left:0}
+  .content{padding:14px}
+  .topbar{padding:12px 14px}
+  .stat-row{grid-template-columns:repeat(2,1fr);gap:10px}
+  .sc{padding:14px 12px}
+  .sval{font-size:22px}
+  .toolbar{flex-direction:column;align-items:stretch}
+  .search{max-width:100%}
+  .tb-right{margin-left:0}
+  th,td{padding:9px 10px}
+  .acts{flex-wrap:wrap}
+  .mob-menu-btn{display:flex}
+}
+.mob-menu-btn{display:none;background:none;border:none;color:var(--ink);padding:4px;cursor:pointer}
+.mob-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:9}
+.mob-overlay.on{display:block}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">НордВестГаз</div>
+    <div class="login-title">Панель управления</div>
+    <div class="login-sub">Введите пароль для входа</div>
+    <div class="lf">
+      <label>Пароль</label>
+      <input type="password" id="pwd" placeholder="••••••••" autocomplete="current-password">
+    </div>
+    <button class="login-btn" onclick="doLogin()">Войти</button>
+    <div class="login-err" id="lerr">Неверный пароль</div>
+    <div class="login-hint">По умолчанию: <strong>admin123</strong> — смените в настройках</div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+
+  <div class="mob-overlay" id="mob-ov" onclick="closeMobMenu()"></div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar" id="sidebar">
+    <div class="sb-logo">
+      <div class="sb-brand">Норд<span>Вест</span>Газ</div>
+      <div class="sb-tagline">ПАНЕЛЬ УПРАВЛЕНИЯ</div>
+    </div>
+    <nav class="sb-nav">
+      <div class="sb-sec">Заявки</div>
+      <a class="sb-a on" href="#" onclick="return goPage('leads',this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        <span>Все заявки</span>
+        <span class="sb-chip chip-red" id="chip-new" style="display:none">0</span>
+      </a>
+      <a class="sb-a" href="#" onclick="return goPage('trash',this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3,6 5,6 21,6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+        <span>Корзина</span>
+        <span class="sb-chip chip-amber" id="chip-trash" style="display:none">0</span>
+      </a>
+      <div class="sb-sec">Аналитика</div>
+      <a class="sb-a" href="#" onclick="return goPage('stats',this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        <span>Статистика</span>
+      </a>
+      <div class="sb-sec">Система</div>
+      <a class="sb-a" href="#" onclick="return goPage('settings',this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <span>Настройки</span>
+      </a>
+      <a class="sb-a" href="index.html" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        <span>Открыть сайт</span>
+      </a>
+    </nav>
+    <div class="sb-bottom">
+      <button class="sb-out" onclick="doLogout()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16,17 21,12 16,7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        <span>Выйти</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-left">
+        <button class="mob-menu-btn" onclick="openMobMenu()">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <div class="topbar-title" id="pg-title">Заявки</div>
+        <span class="topbar-badge chip-red" id="tb-badge" style="display:none"></span>
+      </div>
+      <div class="topbar-date" id="tb-date"></div>
+    </div>
+
+    <div class="content">
+
+      <!-- ═══ LEADS ═══ -->
+      <div class="pg on" id="pg-leads">
+        <div class="stat-row" id="dash-stats"></div>
+        <div class="toolbar">
+          <div class="search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="q" placeholder="Имя, телефон…" oninput="renderLeads()">
+          </div>
+          <div class="fbtns">
+            <button class="fbt on" data-f="all"    onclick="setF('all',this)">Все</button>
+            <button class="fbt"    data-f="new"    onclick="setF('new',this)">Новые</button>
+            <button class="fbt"    data-f="called" onclick="setF('called',this)">Звонок</button>
+            <button class="fbt"    data-f="done"   onclick="setF('done',this)">Готово</button>
+            <button class="fbt"    data-f="cancel" onclick="setF('cancel',this)">Отменены</button>
+          </div>
+          <div class="tb-right">
+            <button class="icon-btn" onclick="doExport()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              CSV
+            </button>
+          </div>
+        </div>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr>
+              <th>№</th><th>Дата</th><th>Имя</th><th>Телефон</th>
+              <th>Оборудование</th><th>Описание</th><th>Статус</th><th>Действия</th>
+            </tr></thead>
+            <tbody id="leads-body"></tbody>
+          </table>
+          <div class="empty-state" id="leads-empty" style="display:none">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg>
+            <p>Заявок не найдено</p>
+            <small>Новые заявки появятся здесь после заполнения формы на сайте</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ TRASH ═══ -->
+      <div class="pg" id="pg-trash">
+        <div style="background:#fff;border:1px solid #FED7AA;border-left:4px solid #F97316;padding:14px 18px;margin-bottom:18px;font-size:13px;color:#92400E;line-height:1.6">
+          <strong>Корзина:</strong> заявки автоматически удаляются через 30 дней после перемещения в корзину.
+          Вы можете восстановить заявку или удалить её вручную немедленно.
+        </div>
+        <div class="toolbar">
+          <div class="search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="tq" placeholder="Поиск в корзине…" oninput="renderTrash()">
+          </div>
+          <div class="tb-right">
+            <button class="icon-btn danger" onclick="confirmEmptyTrash()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3,6 5,6 21,6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+              Очистить корзину
+            </button>
+          </div>
+        </div>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr>
+              <th>№</th><th>Дата заявки</th><th>Имя</th><th>Телефон</th>
+              <th>Оборудование</th><th>Удалится через</th><th>Действия</th>
+            </tr></thead>
+            <tbody id="trash-body"></tbody>
+          </table>
+          <div class="empty-state" id="trash-empty" style="display:none">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><polyline points="3,6 5,6 21,6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+            <p>Корзина пуста</p>
+            <small>Перемещённые заявки появятся здесь</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ STATS ═══ -->
+      <div class="pg" id="pg-stats">
+        <div class="stat-row" id="stat-cards"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:720px">
+          <div class="scard" style="grid-column:1/-1" id="type-chart"></div>
+          <div class="scard" id="status-chart"></div>
+          <div class="scard" id="daily-chart"></div>
+        </div>
+      </div>
+
+      <!-- ═══ SETTINGS ═══ -->
+      <div class="pg" id="pg-settings">
+        <div class="scard">
+          <h3>Смена пароля</h3>
+          <div class="sf"><label>Текущий пароль</label><input type="password" id="cur-p"></div>
+          <div class="sf"><label>Новый пароль</label><input type="password" id="new-p"></div>
+          <div class="sf"><label>Повторите новый</label><input type="password" id="new-p2"></div>
+          <button class="sbt" onclick="changePwd()">Сохранить пароль</button>
+        </div>
+        <div class="scard">
+          <h3>Как подключить email-уведомления</h3>
+          <p style="font-size:13px;color:var(--ink-3);line-height:1.75">
+            Сейчас заявки хранятся в <code style="background:var(--bg);padding:2px 6px">localStorage</code> браузера.<br><br>
+            Чтобы получать заявки <strong>на почту</strong>, подключите один из бесплатных сервисов:<br>
+            • <a href="https://formspree.io" target="_blank" style="color:var(--blue)">Formspree.io</a> — добавьте <code>action="https://formspree.io/f/YOUR_ID"</code> на форму<br>
+            • <a href="https://www.emailjs.com" target="_blank" style="color:var(--blue)">EmailJS.com</a> — JS-интеграция без сервера<br><br>
+            Railway-развёртывание автоматически использует сервер из <code>server.js</code>.
+          </p>
+        </div>
+        <div class="dz">
+          <h3>Опасная зона</h3>
+          <p>Необратимые действия с данными.</p>
+          <div class="dzt">
+            <button class="dbt dbt-amber" onclick="confirmEmptyTrash()">Очистить корзину</button>
+            <button class="dbt dbt-red" onclick="confirmClearAll()">Удалить все заявки</button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /content -->
+  </div><!-- /main -->
+</div><!-- /app -->
+
+<!-- MODAL -->
+<div class="overlay" id="modal-ov" onclick="maybeCloseModal(event)">
+  <div class="modal" id="modal">
+    <div class="mhead">
+      <div class="mttl" id="m-title">Заявка</div>
+      <button class="mclose" onclick="closeModal()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="mbody" id="m-body"></div>
+  </div>
+</div>
+
+<!-- CONFIRM -->
+<div class="confirm-overlay" id="cfm-ov">
+  <div class="confirm-box">
+    <h3 id="cfm-title"></h3>
+    <p id="cfm-text"></p>
+    <div class="confirm-btns">
+      <button class="cbtn" onclick="closeCfm()">Отмена</button>
+      <button class="cbtn danger" id="cfm-ok">Удалить</button>
+    </div>
+  </div>
+</div>
+
+<!-- NOTIF -->
+<div class="notif" id="notif"></div>
+
+<script>
+'use strict';
+
+/* ─── KEYS ─── */
+const K_PWD  = 'nwg_pwd';
+const K_AUTH = 'nwg_auth';
+const TRASH_TTL = 30 * 24 * 60 * 60 * 1000;
+
+/* ─── IN-MEMORY STATE ─── */
+let _leads = [];
+let _trash = [];
+
+const gl = () => _leads;
+const gt = () => _trash;
+const pwd = () => localStorage.getItem(K_PWD) || 'admin123';
+
+/* ─── API HELPERS ─── */
+const USE_API = window.location.protocol !== 'file:';
+
+async function fetchLeads() {
+  if (USE_API) {
+    try {
+      const r = await fetch('/api/leads');
+      if (!r.ok) throw new Error('server');
+      const all = await r.json();
+      _trash = all.filter(l => l.trashedAt);
+      _leads = all.filter(l => !l.trashedAt);
+      return;
+    } catch(e) { console.warn('API недоступен, используем localStorage'); }
+  }
+  // fallback: localStorage
+  try { _leads = JSON.parse(localStorage.getItem('nwg_leads') || '[]'); } catch(_) { _leads = []; }
+  try { _trash = JSON.parse(localStorage.getItem('nwg_trash') || '[]'); } catch(_) { _trash = []; }
+}
+
+async function apiPatch(id, data) {
+  if (!USE_API) return;
+  try {
+    await fetch('/api/leads/' + id, {
+      method: 'PATCH',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(data)
+    });
+  } catch(e) {}
+}
+
+async function apiDelete(id) {
+  if (!USE_API) return;
+  try { await fetch('/api/leads/' + id, { method: 'DELETE' }); } catch(e) {}
+}
+
+/* ─── STATUS CONFIG ─── */
+const SL = {new:'Новая',called:'Позвонили',done:'Завершена',cancel:'Отменена'};
+const SC = {new:'b-new',called:'b-called',done:'b-done',cancel:'b-cancel'};
+
+/* ─── AUTH ─── */
+function doLogin(){
+  const v = document.getElementById('pwd').value;
+  if(v === pwd()){
+    sessionStorage.setItem(K_AUTH,'1');
+    document.getElementById('login-screen').style.display='none';
+    document.getElementById('app').style.display='block';
+    boot();
+  } else {
+    const e=document.getElementById('lerr'); e.style.display='block';
+    document.getElementById('pwd').style.borderColor='#EF4444';
+    setTimeout(()=>{ e.style.display='none'; document.getElementById('pwd').style.borderColor=''; },2500);
+  }
+}
+document.getElementById('pwd').addEventListener('keydown', e=>{ if(e.key==='Enter') doLogin(); });
+
+function doLogout(){ sessionStorage.removeItem(K_AUTH); location.reload(); }
+
+function changePwd(){
+  const c=document.getElementById('cur-p').value;
+  const n=document.getElementById('new-p').value;
+  const n2=document.getElementById('new-p2').value;
+  if(c!==pwd()){  notify('Неверный текущий пароль','err'); return; }
+  if(n.length<6){ notify('Пароль минимум 6 символов','err'); return; }
+  if(n!==n2){     notify('Пароли не совпадают','err'); return; }
+  localStorage.setItem(K_PWD,n);
+  ['cur-p','new-p','new-p2'].forEach(id=>document.getElementById(id).value='');
+  notify('Пароль изменён');
+}
+
+if(sessionStorage.getItem(K_AUTH)==='1'){
+  document.getElementById('login-screen').style.display='none';
+  document.getElementById('app').style.display='block';
+}
+
+/* ─── BOOT ─── */
+let curFilter='all', curModalId=null;
+
+async function boot(){
+  updateDate(); setInterval(updateDate, 60000);
+  await fetchLeads();
+  gcTrash();
+  renderAll();
+}
+
+function updateDate(){
+  document.getElementById('tb-date').textContent =
+    new Date().toLocaleDateString('ru-RU',{weekday:'long',day:'numeric',month:'long'});
+}
+
+function gcTrash(){
+  const now = Date.now();
+  _trash = _trash.filter(l => now - l.trashedAt < TRASH_TTL);
+}
+
+function renderAll(){ renderLeads(); renderTrash(); updateChips(); }
+
+/* ─── NAVIGATION ─── */
+const PG_TITLES={leads:'Заявки',trash:'Корзина',stats:'Статистика',settings:'Настройки'};
+
+function goPage(id, el){
+  document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.sb-a').forEach(a=>a.classList.remove('on'));
+  const p=document.getElementById('pg-'+id); if(p) p.classList.add('on');
+  if(el) el.classList.add('on');
+  document.getElementById('pg-title').textContent=PG_TITLES[id]||id;
+  closeMobMenu();
+  if(id==='stats') renderStats();
+  if(id==='trash') renderTrash();
+  const tb=document.getElementById('tb-badge');
+  if(id==='trash'){
+    const n=gt().length; tb.textContent=n; tb.style.display=n?'':'none';
+  } else tb.style.display='none';
+  return false;
+}
+
+function openMobMenu(){
+  document.getElementById('sidebar').classList.add('mob-open');
+  document.getElementById('mob-ov').classList.add('on');
+}
+function closeMobMenu(){
+  document.getElementById('sidebar').classList.remove('mob-open');
+  document.getElementById('mob-ov').classList.remove('on');
+}
+
+/* ─── LEADS ─── */
+function setF(f,btn){
+  curFilter=f;
+  document.querySelectorAll('.fbt').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  renderLeads();
+}
+
+function renderLeads(){
+  const leads=gl();
+  const q=(document.getElementById('q').value||'').toLowerCase();
+  const body=document.getElementById('leads-body');
+  const empty=document.getElementById('leads-empty');
+
+  let filtered=leads.filter(l=>{
+    if(curFilter!=='all' && l.status!==curFilter) return false;
+    if(q){ const hay=(l.name+l.phone+l.type+l.note).toLowerCase(); if(!hay.includes(q)) return false; }
+    return true;
+  });
+
+  updateChips(leads);
+  renderDashStats(leads);
+
+  if(!filtered.length){ body.innerHTML=''; empty.style.display='block'; return; }
+  empty.style.display='none';
+
+  body.innerHTML=filtered.map((l,i)=>`
+    <tr class="${l.status==='new'?'is-new':''}">
+      <td style="color:var(--ink-3);font-size:11px">${filtered.length-i}</td>
+      <td class="c-date">${x(l.date)}</td>
+      <td class="c-name">${x(l.name)||'—'}</td>
+      <td class="c-phone"><a href="tel:${(l.phone||'').replace(/\D/g,'')}">${x(l.phone)}</a></td>
+      <td class="c-type">${x(l.type)||'—'}</td>
+      <td class="c-note" title="${x(l.note)}">${x(l.note)||'—'}</td>
+      <td><span class="badge ${SC[l.status]||'b-new'}">${SL[l.status]||l.status}</span></td>
+      <td>
+        <div class="acts">
+          <button class="act" onclick="openModal(${l.id})">Открыть</button>
+          <button class="act a-green" onclick="qs(${l.id},'done')">✓</button>
+          <button class="act a-trash" onclick="moveToTrash(${l.id})" title="В корзину">🗑</button>
+        </div>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function renderDashStats(leads){
+  const all=leads.length, nw=leads.filter(l=>l.status==='new').length,
+        done=leads.filter(l=>l.status==='done').length, called=leads.filter(l=>l.status==='called').length;
+  document.getElementById('dash-stats').innerHTML=`
+    <div class="sc c-blue"><div class="slbl">Всего заявок</div><div class="sval">${all}</div><div class="ssub">за всё время</div></div>
+    <div class="sc c-red"> <div class="slbl">Новые</div><div class="sval">${nw}</div><div class="ssub">требуют обработки</div></div>
+    <div class="sc c-amber"><div class="slbl">В работе</div><div class="sval">${called}</div><div class="ssub">позвонили</div></div>
+    <div class="sc c-green"><div class="slbl">Завершены</div><div class="sval">${done}</div><div class="ssub">успешно</div></div>
+  `;
+}
+
+function updateChips(leads){
+  leads=leads||gl();
+  const nw=leads.filter(l=>l.status==='new').length;
+  const cn=document.getElementById('chip-new');
+  cn.textContent=nw; cn.style.display=nw?'':'none';
+  const tr=gt().length;
+  const ct=document.getElementById('chip-trash');
+  ct.textContent=tr; ct.style.display=tr?'':'none';
+}
+
+/* ─── TRASH ─── */
+async function moveToTrash(id){
+  const idx=_leads.findIndex(l=>l.id===id); if(idx===-1) return;
+  const now = Date.now();
+  _trash.unshift({..._leads[idx], trashedAt: now});
+  _leads.splice(idx,1);
+  await apiPatch(id, {trashedAt: now, status: _trash[0].status});
+  renderAll();
+  notify('Заявка перемещена в корзину','warn');
+}
+
+async function restoreFromTrash(id){
+  const idx=_trash.findIndex(l=>l.id===id); if(idx===-1) return;
+  const item={..._trash[idx]};
+  delete item.trashedAt;
+  item.status='new';
+  _leads.unshift(item);
+  _trash.splice(idx,1);
+  await apiPatch(id, {trashedAt: null, status: 'new'});
+  renderAll();
+  notify('Заявка восстановлена');
+}
+
+async function deleteFromTrash(id){
+  showConfirm(
+    'Удалить навсегда?',
+    'Заявка будет безвозвратно удалена. Это действие нельзя отменить.',
+    async ()=>{
+      _trash = _trash.filter(l=>l.id!==id);
+      await apiDelete(id);
+      renderTrash(); updateChips(); notify('Удалено');
+    }
+  );
+}
+
+function renderTrash(){
+  const trash=gt();
+  const q=(document.getElementById('tq').value||'').toLowerCase();
+  const body=document.getElementById('trash-body');
+  const empty=document.getElementById('trash-empty');
+  const now=Date.now();
+
+  let items=trash.filter(l=>{
+    if(q){ const hay=(l.name+l.phone+l.type).toLowerCase(); if(!hay.includes(q)) return false; }
+    return true;
+  });
+
+  if(!items.length){ body.innerHTML=''; empty.style.display='block'; return; }
+  empty.style.display='none';
+
+  body.innerHTML=items.map((l,i)=>{
+    const msLeft = TRASH_TTL-(now-l.trashedAt);
+    const daysLeft = Math.max(0, Math.ceil(msLeft/86400000));
+    const cls = daysLeft<=5?'days-warn':'days-ok';
+    const dStr = daysLeft===0?'<span class="days-warn">Сегодня</span>'
+                             :`<span class="${cls}">${daysLeft} дн.</span>`;
+    return `
+      <tr class="is-trash">
+        <td style="color:var(--ink-3);font-size:11px">${items.length-i}</td>
+        <td class="c-date">${x(l.date)}</td>
+        <td class="c-name">${x(l.name)||'—'}</td>
+        <td class="c-phone"><a href="tel:${(l.phone||'').replace(/\D/g,'')}">${x(l.phone)}</a></td>
+        <td class="c-type">${x(l.type)||'—'}</td>
+        <td>${dStr}</td>
+        <td>
+          <div class="acts">
+            <button class="act a-restore" onclick="restoreFromTrash(${l.id})">↩ Восстановить</button>
+            <button class="act a-kill" onclick="deleteFromTrash(${l.id})">✕ Удалить</button>
+          </div>
+        </td>
+      </tr>
+    `;
+  }).join('');
+}
+
+/* ─── MODAL ─── */
+function openModal(id){
+  const leads=gl(); const l=leads.find(v=>v.id===id); if(!l) return;
+  curModalId=id;
+  if(l.status==='new'){ l.status='called'; apiPatch(id,{status:'called'}); renderLeads(); }
+
+  document.getElementById('m-title').textContent=l.name||'Без имени';
+  document.getElementById('m-body').innerHTML=`
+    <div class="mrow">
+      <div class="mhalf"><div class="mlbl">Имя</div><div class="mval">${x(l.name)||'—'}</div></div>
+      <div class="mhalf"><div class="mlbl">Дата</div><div class="mval">${x(l.date)}</div></div>
+    </div>
+    <div style="margin-bottom:14px"><div class="mlbl">Телефон</div>
+      <div class="mval"><a href="tel:${(l.phone||'').replace(/\D/g,'')}">${x(l.phone)}</a></div>
+    </div>
+    <div style="margin-bottom:14px"><div class="mlbl">Оборудование</div><div class="mval">${x(l.type)||'—'}</div></div>
+    <div style="margin-bottom:14px"><div class="mlbl">Описание проблемы</div><div class="mval">${x(l.note)||'—'}</div></div>
+    <div class="m-sep"></div>
+    <div class="mlbl" style="margin-bottom:8px">Статус заявки</div>
+    <div class="mstatus-row">
+      ${['new','called','done','cancel'].map(s=>`
+        <button class="msbt ${l.status===s?'ms-'+s:''}" id="ms-${s}" onclick="pickStatus('${s}')">
+          ${SL[s]}
+        </button>`).join('')}
+    </div>
+    <div style="margin-bottom:4px"><div class="mlbl">Заметка оператора</div>
+      <textarea class="note-area" id="m-note">${x(l.opNote||'')}</textarea>
+    </div>
+    <div style="display:flex;gap:8px;margin-top:14px">
+      <button class="msave" style="flex:1" onclick="saveModal()">Сохранить</button>
+      <button class="msave" style="flex:0 0 auto;background:#6B4226;padding:12px 16px" onclick="trashFromModal()">🗑 В корзину</button>
+    </div>
+  `;
+  document.getElementById('modal-ov').classList.add('on');
+}
+
+function pickStatus(s){
+  document.querySelectorAll('.msbt').forEach(b=>{ b.className='msbt'; });
+  document.getElementById('ms-'+s).className='msbt ms-'+s;
+}
+
+function getModalStatus(){
+  for(const s of ['new','called','done','cancel'])
+    if(document.getElementById('ms-'+s)?.className?.includes('ms-')) return s;
+  return 'called';
+}
+
+async function saveModal(){
+  const idx=_leads.findIndex(l=>l.id===curModalId); if(idx===-1) return;
+  const status=getModalStatus();
+  const opNote=document.getElementById('m-note').value.trim();
+  _leads[idx].status=status;
+  _leads[idx].opNote=opNote;
+  await apiPatch(curModalId, {status, opNote});
+  closeModal(); renderLeads(); notify('Сохранено');
+}
+
+function trashFromModal(){
+  const id=curModalId;
+  closeModal();
+  moveToTrash(id);
+}
+
+function closeModal(){ document.getElementById('modal-ov').classList.remove('on'); curModalId=null; }
+function maybeCloseModal(e){ if(e.target===document.getElementById('modal-ov')) closeModal(); }
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeModal(); closeCfm(); } });
+
+/* ─── CONFIRM ─── */
+function showConfirm(title, text, onOk){
+  document.getElementById('cfm-title').textContent=title;
+  document.getElementById('cfm-text').textContent=text;
+  document.getElementById('cfm-ok').onclick=()=>{ onOk(); closeCfm(); };
+  document.getElementById('cfm-ov').classList.add('on');
+}
+function closeCfm(){ document.getElementById('cfm-ov').classList.remove('on'); }
+
+function confirmEmptyTrash(){
+  if(!gt().length){ notify('Корзина уже пуста','warn'); return; }
+  showConfirm('Очистить корзину?','Все заявки в корзине будут удалены навсегда.', async ()=>{
+    for(const l of _trash) await apiDelete(l.id);
+    _trash=[]; renderTrash(); updateChips(); notify('Корзина очищена');
+  });
+}
+function confirmClearAll(){
+  showConfirm('Удалить ВСЕ заявки?','Все активные заявки будут удалены. Корзина останется.', async ()=>{
+    for(const l of _leads) await apiDelete(l.id);
+    _leads=[]; renderAll(); notify('Все заявки удалены');
+  });
+}
+
+/* ─── EXPORT CSV ─── */
+function doExport(){
+  const leads=gl();
+  if(!leads.length){ notify('Нет заявок','warn'); return; }
+  const hdr=['№','Дата','Имя','Телефон','Оборудование','Описание','Статус','Заметка'];
+  const rows=leads.map((l,i)=>[
+    leads.length-i, l.date, l.name||'', l.phone||'',
+    l.type||'', l.note||'', SL[l.status]||l.status, l.opNote||''
+  ]);
+  const csv=[hdr,...rows].map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\n');
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}));
+  a.download=`leads-${new Date().toISOString().slice(0,10)}.csv`;
+  a.click(); notify('CSV скачан');
+}
+
+/* ─── QUICK STATUS ─── */
+async function qs(id,status){
+  const idx=_leads.findIndex(l=>l.id===id); if(idx===-1) return;
+  _leads[idx].status=status;
+  await apiPatch(id, {status});
+  renderLeads();
+  notify(status==='done'?'Завершено':'Обновлено');
+}
+
+/* ─── STATS PAGE ─── */
+function renderStats(){
+  const leads=gl(), tr=gt();
+  const total=leads.length, nw=leads.filter(l=>l.status==='new').length,
+        done=leads.filter(l=>l.status==='done').length, cancel=leads.filter(l=>l.status==='cancel').length,
+        conv=total?Math.round(done/total*100):0;
+  document.getElementById('stat-cards').innerHTML=`
+    <div class="sc c-blue"><div class="slbl">Всего</div><div class="sval">${total}</div></div>
+    <div class="sc c-green"><div class="slbl">Конверсия</div><div class="sval">${conv}%</div><div class="ssub">завершено</div></div>
+    <div class="sc c-red"><div class="slbl">Новых</div><div class="sval">${nw}</div></div>
+    <div class="sc"><div class="slbl">В корзине</div><div class="sval" style="color:var(--trash)">${tr.length}</div></div>
+  `;
+  const types={};
+  leads.forEach(l=>{ const t=l.type||'Не указано'; types[t]=(types[t]||0)+1; });
+  const byType=Object.entries(types).sort((a,b)=>b[1]-a[1]);
+  const mx=byType[0]?.[1]||1;
+  document.getElementById('type-chart').innerHTML=`
+    <h3>По типу оборудования</h3>
+    ${byType.length?byType.map(([t,n])=>`
+      <div class="bar-item">
+        <div class="bar-row"><span style="font-weight:500;color:var(--ink)">${x(t)}</span><span style="color:var(--ink-3)">${n}</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:${Math.round(n/mx*100)}%"></div></div>
+      </div>`).join(''):'<p style="font-size:13px;color:var(--ink-3)">Нет данных</p>'}
+  `;
+  const sByStatus=[['new','Новые'],['called','В работе'],['done','Завершены'],['cancel','Отменены']];
+  document.getElementById('status-chart').innerHTML=`
+    <h3>По статусу</h3>
+    ${sByStatus.map(([s,lbl])=>{const n=leads.filter(l=>l.status===s).length;return`
+      <div class="bar-item">
+        <div class="bar-row"><span class="badge ${SC[s]}">${lbl}</span><span style="color:var(--ink-3)">${n}</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:${total?Math.round(n/total*100):0}%"></div></div>
+      </div>`}).join('')}
+  `;
+  const days=[]; const today=new Date();
+  for(let i=6;i>=0;i--){ const d=new Date(today); d.setDate(d.getDate()-i); days.push(d); }
+  const daily=days.map(d=>{
+    const ds=d.toLocaleDateString('ru-RU',{day:'numeric',month:'short'});
+    const cnt=leads.filter(l=>l.date&&l.date.startsWith(d.toLocaleDateString('ru-RU').split(',')[0])).length;
+    return {ds,cnt};
+  });
+  const dmx=Math.max(...daily.map(d=>d.cnt),1);
+  document.getElementById('daily-chart').innerHTML=`
+    <h3>Активность (7 дней)</h3>
+    ${daily.map(d=>`
+      <div class="bar-item">
+        <div class="bar-row"><span style="font-size:12px;color:var(--ink-2)">${d.ds}</span><span style="color:var(--ink-3)">${d.cnt}</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:${Math.round(d.cnt/dmx*100)}%"></div></div>
+      </div>`).join('')}
+  `;
+}
+
+/* ─── NOTIF ─── */
+let ntTimer;
+function notify(msg,type){
+  const el=document.getElementById('notif');
+  const icon=type==='err'?'✕ ':type==='warn'?'⚠ ':'✓ ';
+  el.textContent=icon+msg;
+  el.className='notif on '+(type==='err'?'notif-err':type==='warn'?'notif-warn':'notif-ok');
+  clearTimeout(ntTimer); ntTimer=setTimeout(()=>el.classList.remove('on'),3000);
+}
+
+/* ─── UTIL ─── */
+function x(s){ if(!s) return ''; return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+/* ─── BOOT ─── */
+if(sessionStorage.getItem(K_AUTH)==='1') boot();
+</script>
+</body>
+</html>
