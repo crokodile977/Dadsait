@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Ремонт газовых котлов и колонок | НордВестГаз — Северо-запад Москвы</title>
+<meta name="description" content="Ремонт газовых котлов, колонок и плит по Северо-западу Москвы и МО. Работаем 24/7, официальный договор, гарантия 12 месяцев.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Inter',sans-serif;background:#fff;color:#1C2B3A;overflow-x:hidden;line-height:1.65}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+
+:root{
+  --blue:#1557A7;--blue-dk:#0D3F7A;--blue-md:#1E6EC8;
+  --blue-pale:#EAF2FC;--blue-pale2:#D6E8F9;
+  --sky:#F7FAFD;--ink:#1C2B3A;--ink-mid:#3D5166;--ink-lite:#607D97;
+  --bdr:#CDE0F2;--bdr-dk:#A8C8E8;--gold:#C8952A;
+  --t:.22s ease;--sh-sm:0 1px 8px rgba(21,87,167,.08);
+  --sh:0 4px 24px rgba(21,87,167,.13);--sh-lg:0 10px 48px rgba(21,87,167,.18)
+}
+h1,h2{font-family:'PT Serif',serif;line-height:1.18;color:#1C2B3A}
+h3{font-family:'Inter',sans-serif;line-height:1.25;color:#1C2B3A}
+
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+section{padding:90px 0}
+
+.lbl{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--blue);
+  border-bottom:2px solid var(--blue);padding-bottom:4px;margin-bottom:18px}
+
+.btn{display:inline-flex;align-items:center;gap:9px;padding:14px 28px;font-family:'Inter',sans-serif;
+  font-size:14px;font-weight:700;cursor:pointer;transition:var(--t);border:none;white-space:nowrap;
+  text-decoration:none;letter-spacing:.02em}
+.btn-blue{background:var(--blue);color:#fff;box-shadow:0 3px 16px rgba(21,87,167,.35)}
+.btn-blue:hover{background:var(--blue-dk);transform:translateY(-2px);box-shadow:0 5px 24px rgba(21,87,167,.48)}
+.btn-wh{background:#fff;color:var(--blue);box-shadow:0 3px 14px rgba(0,0,0,.14)}
+.btn-wh:hover{box-shadow:0 5px 22px rgba(0,0,0,.22);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.4)}
+.btn-ghost:hover{background:rgba(255,255,255,.08);transform:translateY(-2px)}
+
+/* HEADER */
+header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.96);
+  backdrop-filter:blur(16px);border-bottom:1px solid var(--bdr);transition:var(--t)}
+.hdr{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:20px}
+.logo{display:flex;align-items:center;text-decoration:none}
+.logo-img{height:40px;width:auto;max-width:170px;object-fit:contain;display:block}
+.logo-fallback{display:flex;align-items:center;gap:10px;font-family:'Inter',sans-serif;font-weight:800;font-size:15px;color:#1C2B3A}
+.logo-badge{background:var(--blue);color:#fff;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;border-radius:4px;flex-shrink:0;letter-spacing:.02em}
+.logo-sub{font-size:10px;font-weight:500;color:var(--ink-lite);display:block;margin-top:1px;letter-spacing:.04em}
+nav a{padding:8px 13px;font-size:13px;font-weight:500;color:var(--ink-mid);transition:var(--t);
+  border-bottom:2px solid transparent;display:inline-block}
+nav a:hover{color:var(--blue);border-bottom-color:var(--blue)}
+.hdr-r{display:flex;align-items:center;gap:14px}
+.hdr-status{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink-lite)}
+.dot{width:7px;height:7px;background:#16A34A;border-radius:50%;animation:dg 1.8s infinite}
+@keyframes dg{0%,100%{box-shadow:0 0 0 0 rgba(22,163,74,.5)}50%{box-shadow:0 0 0 5px rgba(22,163,74,0)}}
+.hdr-phone{font-size:17px;font-weight:800;color:#1C2B3A;transition:var(--t)}
+.hdr-phone:hover{color:var(--blue)}
+.burger{display:none;background:none;border:none;cursor:pointer;color:#1C2B3A;padding:4px}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;
+  padding:120px 0 80px;overflow:hidden;background:#0E1F35}
+.hero-bg{position:absolute;inset:0;background:url('image.png') center/cover no-repeat;opacity:.28}
+.hero-fallback{position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 80% at 80% 50%,#1A4A7A 0%,transparent 60%),
+  linear-gradient(135deg,#0A1828 0%,#0E2A48 50%,#0A1828 100%)}
+.hero-noise{position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg width='4' height='4' viewBox='0 0 4 4' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='1' height='1' fill='rgba(255,255,255,0.015)'/%3E%3C/svg%3E");
+  z-index:1;pointer-events:none}
+.hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1fr 420px;gap:64px;align-items:center}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:20px}
+.hero-eyebrow span{width:28px;height:1px;background:rgba(255,255,255,.3);display:inline-block}
+.hero h1{font-size:clamp(32px,4.2vw,58px);color:#fff;margin-bottom:18px;font-weight:700}
+.hero h1 em{color:#7DC3FF;font-style:normal}
+.hero-line{width:56px;height:3px;background:var(--blue-md);margin:18px 0 22px;border-radius:2px}
+.hero-sub{font-size:16px;color:rgba(255,255,255,.7);margin-bottom:32px;max-width:500px;line-height:1.8}
+.hero-fs{display:flex;flex-direction:column;gap:12px;margin-bottom:36px}
+.hf-row{display:flex;align-items:center;gap:12px;color:rgba(255,255,255,.82);font-size:14px}
+.hf-ic{width:28px;height:28px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);
+  border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+
+/* HERO FORM */
+.hform{background:#fff;border-radius:2px;padding:34px;box-shadow:0 20px 60px rgba(0,0,0,.35);position:relative}
+.hform::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,var(--blue-dk),var(--blue-md))}
+.hf-ttl{font-size:16px;font-weight:800;color:#1C2B3A;margin-bottom:5px}
+.hf-sub{font-size:13px;color:var(--ink-lite);margin-bottom:20px;line-height:1.5}
+.fg{margin-bottom:12px}
+.fg label{display:block;font-size:11px;font-weight:700;color:var(--ink-lite);
+  text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}
+.fg input,.fg select,.fg textarea{width:100%;background:var(--sky);border:1px solid var(--bdr);
+  border-radius:2px;padding:12px 14px;font-family:'Inter',sans-serif;font-size:14px;
+  color:#1C2B3A;transition:var(--t);outline:none}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--blue);background:#fff;
+  box-shadow:0 0 0 3px rgba(21,87,167,.1)}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--ink-lite)}
+.fg select{appearance:none;cursor:pointer}
+.fbtn{width:100%;padding:15px;border-radius:2px;background:var(--blue);color:#fff;
+  font-family:'Inter',sans-serif;font-size:14px;font-weight:800;border:none;cursor:pointer;
+  transition:var(--t);letter-spacing:.04em;text-transform:uppercase}
+.fbtn:hover{background:var(--blue-dk);transform:translateY(-1px);box-shadow:0 6px 20px rgba(21,87,167,.4)}
+.fnote{text-align:center;font-size:11px;color:var(--ink-lite);margin-top:10px;line-height:1.55}
+.fdiv{display:flex;align-items:center;gap:10px;margin:14px 0}
+.fdiv::before,.fdiv::after{content:'';flex:1;height:1px;background:var(--bdr)}
+.fdiv span{font-size:11px;color:var(--ink-lite);white-space:nowrap}
+.fph{display:flex;align-items:center;gap:12px;background:var(--sky);border:1px solid var(--bdr);
+  padding:12px 14px;text-decoration:none;transition:var(--t);color:#1C2B3A}
+.fph:hover{border-color:var(--blue);background:var(--blue-pale)}
+.fph small{display:block;font-size:10px;color:var(--ink-lite);text-transform:uppercase;letter-spacing:.07em}
+.fph strong{font-size:16px;font-weight:800}
+.fwa{display:flex;align-items:center;justify-content:center;gap:9px;
+  background:rgba(37,211,102,.07);border:1px solid rgba(37,211,102,.3);
+  padding:11px;text-decoration:none;color:#15803D;font-weight:700;font-size:13px;
+  margin-top:9px;transition:var(--t)}
+.fwa:hover{background:rgba(37,211,102,.14);border-color:rgba(37,211,102,.55)}
+
+/* STATS */
+.sbar{background:var(--blue-dk);display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:3px solid var(--gold)}
+.sb{padding:28px 24px;text-align:center;border-right:1px solid rgba(255,255,255,.12);transition:var(--t)}
+.sb:last-child{border-right:none}
+.sb:hover{background:rgba(255,255,255,.05)}
+.sb-n{font-family:'PT Serif',serif;font-size:36px;font-weight:700;color:#fff;display:block;line-height:1}
+.sb-l{font-size:12px;color:rgba(255,255,255,.6);margin-top:7px;line-height:1.45}
+
+/* SERVICES */
+.sv-g{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--bdr);border:1px solid var(--bdr)}
+.sv{background:#fff;padding:34px 30px;transition:var(--t);position:relative;overflow:hidden}
+.sv::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;
+  background:var(--blue);transform:scaleY(0);transform-origin:top;transition:var(--t)}
+.sv:hover{background:var(--sky)}
+.sv:hover::before{transform:scaleY(1)}
+.sv-ic{font-size:34px;margin-bottom:16px;display:block}
+.sv h3{font-size:17px;font-weight:700;margin-bottom:10px}
+.sv p{font-size:14px;color:var(--ink-lite);line-height:1.75;margin-bottom:18px}
+.sv-pr{display:flex;align-items:baseline;gap:4px;margin-bottom:12px}
+.sv-pr .fr{font-size:12px;color:var(--ink-lite)}
+.sv-pr .pr{font-size:24px;font-weight:800;color:var(--blue);font-family:'PT Serif',serif}
+.sv-pr .cu{font-size:13px;color:var(--ink-mid);font-weight:600}
+.sv-brands{display:flex;flex-wrap:wrap;gap:5px}
+.brand{background:var(--blue-pale);border:1px solid var(--bdr);padding:3px 10px;font-size:11px;color:var(--ink-mid)}
+
+/* GALLERY */
+.gal-sec{background:#0B1C2E;padding:70px 0}
+.gal-g{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-top:44px}
+.gal-item{position:relative;overflow:hidden;aspect-ratio:4/3;background:#1a2e45;cursor:pointer}
+.gal-item img{width:100%;height:100%;object-fit:cover;transition:.4s ease;filter:brightness(.82)}
+.gal-item:hover img{transform:scale(1.04);filter:brightness(1)}
+.gal-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.65) 0%,transparent 55%);
+  display:flex;align-items:flex-end;padding:18px}
+.gal-cap{font-size:13px;color:rgba(255,255,255,.85);font-weight:600}
+.gal-ph{width:100%;height:100%;background:linear-gradient(135deg,#1A3A5C,#0F2235);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  border:2px dashed rgba(255,255,255,.1)}
+.gal-ph .pi{font-size:36px;opacity:.3}
+.gal-ph .pt{font-size:12px;color:rgba(255,255,255,.3);text-align:center;padding:0 16px;line-height:1.6}
+
+/* TEAM */
+.team-g{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.tm{text-align:center}
+.tm-ph{width:100%;aspect-ratio:3/4;background:var(--sky);border:1px solid var(--bdr);
+  position:relative;overflow:hidden;margin-bottom:18px}
+.tm-ph img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.tm-ph-pl{width:100%;height:100%;background:linear-gradient(160deg,#EAF2FC,#D6E8F9);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+.tm-ph-pl .pi{font-size:48px;opacity:.28}
+.tm-ph-pl .pt{font-size:12px;color:var(--ink-lite);text-align:center;padding:0 16px}
+.tm-role{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--blue);margin-bottom:6px}
+.tm h3{font-size:17px;font-weight:700;color:#1C2B3A;margin-bottom:8px}
+.tm p{font-size:13px;color:var(--ink-lite);line-height:1.7}
+.tm-cert{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:12px;color:var(--blue);
+  font-weight:600;border:1px solid var(--bdr);padding:5px 12px;background:var(--blue-pale)}
+
+/* TRUST */
+.trust-g{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.trust-g h2{font-size:clamp(24px,2.8vw,38px);margin-bottom:16px}
+.trust-g>div>p{font-size:15px;color:var(--ink-mid);line-height:1.8;margin-bottom:24px}
+.tl-list{display:flex;flex-direction:column;gap:10px}
+.tl{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:var(--ink-mid)}
+.tl-chk{width:20px;height:20px;background:var(--blue);border-radius:2px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.tl-chk svg{stroke:#fff}
+.trust-img{position:relative;padding-bottom:32px;padding-right:32px}
+.trust-img img{width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--bdr);display:block}
+.trust-img-pl{width:100%;aspect-ratio:4/3;background:linear-gradient(135deg,#D6E8F9,#EAF2FC);
+  border:1px solid var(--bdr);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+.trust-img-pl .pi{font-size:48px;opacity:.28}
+.trust-img-pl .pt{font-size:13px;color:var(--ink-lite);text-align:center}
+.trust-badge{position:absolute;bottom:0;right:0;background:var(--blue-dk);color:#fff;
+  padding:16px 22px;border:3px solid #fff;text-align:center;box-shadow:var(--sh)}
+.trust-badge strong{display:block;font-family:'PT Serif',serif;font-size:28px;color:#7DC3FF}
+.trust-badge span{font-size:11px;color:rgba(255,255,255,.65);text-transform:uppercase;letter-spacing:.08em}
+
+/* PRICES */
+.pr-tbl{border:1px solid var(--bdr)}
+.pr-row{display:flex;align-items:center;justify-content:space-between;
+  padding:17px 26px;border-bottom:1px solid var(--bdr);transition:var(--t)}
+.pr-row:last-child{border-bottom:none}
+.pr-row:hover{background:var(--sky)}
+.pr-row.hd{background:var(--blue-dk);padding:13px 26px}
+.pr-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.65)}
+.pr-nm strong{display:block;font-size:14px;color:#1C2B3A;font-weight:600}
+.pr-nm small{font-size:12px;color:var(--ink-lite)}
+.pr-v{font-size:17px;font-weight:800;color:var(--blue);white-space:nowrap;font-family:'PT Serif',serif}
+.pr-v.free{color:#16A34A}
+.pr-bdg{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;
+  padding:2px 8px;background:rgba(22,163,74,.1);color:#16A34A;border:1px solid rgba(22,163,74,.3);margin-left:8px}
+.pr-note{text-align:center;margin-top:18px;font-size:13px;color:var(--ink-lite);line-height:1.7}
+
+/* HOW */
+.how-g{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--bdr);border:1px solid var(--bdr)}
+.hw{background:#fff;padding:32px 24px;transition:var(--t)}
+.hw:hover{background:var(--sky)}
+.hw-n{font-family:'PT Serif',serif;font-size:64px;font-weight:700;
+  color:var(--blue-pale2);line-height:1;margin-bottom:14px}
+.hw-ic{font-size:26px;margin-bottom:12px;display:block}
+.hw h3{font-size:15px;font-weight:700;color:#1C2B3A;margin-bottom:8px}
+.hw p{font-size:13px;color:var(--ink-lite);line-height:1.7}
+
+/* REVIEWS */
+.rv-g{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.rv{background:#fff;border:1px solid var(--bdr);padding:26px;transition:var(--t)}
+.rv:hover{border-color:var(--bdr-dk);box-shadow:var(--sh);transform:translateY(-3px)}
+.rv-top{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.av{width:44px;height:44px;border-radius:50%;flex-shrink:0;overflow:hidden;
+  background:var(--blue-dk);border:2px solid var(--blue-pale2);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'PT Serif',serif;font-size:18px;font-weight:700;color:#fff}
+.rv-meta strong{display:block;font-size:14px;color:#1C2B3A;font-weight:700}
+.rv-meta span{font-size:12px;color:var(--ink-lite)}
+.rv-stars{color:#C8952A;font-size:13px;margin-bottom:10px;letter-spacing:2px}
+.rv p{font-size:14px;color:var(--ink-mid);line-height:1.75;font-style:italic}
+.rv-dev{margin-top:14px;font-size:11px;color:var(--ink-lite);border-top:1px solid var(--bdr);padding-top:12px;display:block}
+
+/* CONTACT */
+.ct-g{display:grid;grid-template-columns:1fr 460px;gap:60px;align-items:start}
+.ct-info h2{font-size:clamp(24px,3vw,40px);margin-bottom:14px}
+.ct-info>p{font-size:15px;color:var(--ink-mid);margin-bottom:28px;line-height:1.8}
+.ct-list{display:flex;flex-direction:column;gap:2px}
+.ct-item{display:flex;align-items:center;gap:14px;padding:14px 18px;
+  border:1px solid var(--bdr);border-bottom:none;background:#fff;transition:var(--t)}
+.ct-item:last-child{border-bottom:1px solid var(--bdr)}
+.ct-item:hover{background:var(--sky)}
+.ct-ic{font-size:18px;flex-shrink:0;width:32px;text-align:center}
+.ct-item small{display:block;font-size:10px;color:var(--ink-lite);text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px}
+.ct-item a{font-size:15px;font-weight:700;color:#1C2B3A;transition:var(--t)}
+.ct-item a:hover{color:var(--blue)}
+.ct-item span{font-size:14px;color:var(--ink-mid)}
+.ct-form{background:#fff;border:1px solid var(--bdr);padding:36px;box-shadow:var(--sh-lg);position:relative}
+.ct-form::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,var(--blue-dk),var(--blue-md))}
+.ct-form h3{font-size:20px;font-weight:800;color:#1C2B3A;margin-bottom:22px}
+
+/* FOOTER */
+footer{background:#0B1C2E;border-top:3px solid var(--gold);padding:42px 0}
+.ft{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start;justify-content:space-between}
+.ft-logo{font-family:'Inter',sans-serif;font-size:14px;font-weight:800;color:#fff;margin-bottom:6px}
+.ft-logo span{color:#7DC3FF}
+.ft-copy{font-size:12px;color:rgba(255,255,255,.35);line-height:1.7}
+.ft-nav a{display:block;font-size:13px;color:rgba(255,255,255,.45);padding:4px 0;transition:var(--t)}
+.ft-nav a:hover{color:#7DC3FF}
+.ft-info{font-size:12px;color:rgba(255,255,255,.35);line-height:1.8;text-align:right}
+.ft-info a{color:#7DC3FF}
+
+/* FLOATS */
+.fl{position:fixed;bottom:24px;right:24px;z-index:200;display:flex;flex-direction:column;gap:10px;align-items:flex-end}
+.fl-btn{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 16px rgba(0,0,0,.25);cursor:pointer;transition:var(--t);text-decoration:none;border:none;font-size:21px}
+.fl-btn:hover{transform:scale(1.1)}
+.fl-call{background:var(--blue);animation:ring 2.5s infinite}
+@keyframes ring{0%,100%{box-shadow:0 4px 16px rgba(21,87,167,.5)}50%{box-shadow:0 4px 24px rgba(21,87,167,.75),0 0 0 8px rgba(21,87,167,.1)}}
+.fl-wa{background:#25D366}
+.fl-tg{background:#0088CC}
+.fl-g{display:flex;align-items:center}
+.fl-lbl{background:#fff;border:1px solid var(--bdr);box-shadow:var(--sh-sm);color:#1C2B3A;
+  padding:5px 12px;font-size:12px;font-weight:600;white-space:nowrap;margin-right:8px;
+  opacity:0;transform:translateX(10px);transition:var(--t);pointer-events:none}
+.fl-g:hover .fl-lbl{opacity:1;transform:translateX(0)}
+.mob-call{display:none;position:fixed;bottom:0;left:0;right:0;z-index:150;background:var(--blue);
+  padding:14px 24px;align-items:center;justify-content:center;gap:10px;
+  font-family:'Inter',sans-serif;font-weight:800;font-size:15px;color:#fff;
+  text-decoration:none;letter-spacing:.04em;text-transform:uppercase;
+  box-shadow:0 -3px 16px rgba(21,87,167,.4)}
+
+/* ANIMATIONS */
+@keyframes up{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+.a{animation:up .6s ease both}
+.a1{animation-delay:.08s}.a2{animation-delay:.18s}.a3{animation-delay:.28s}.a4{animation-delay:.38s}
+
+/* ── RESPONSIVE ── */
+
+/* Tablet */
+@media(max-width:1024px){
+  .hero-inner{grid-template-columns:1fr;gap:36px}
+  .hform{max-width:560px}
+  .sbar{grid-template-columns:repeat(2,1fr)}
+  .sv-g{grid-template-columns:repeat(2,1fr)}
+  .how-g{grid-template-columns:repeat(2,1fr)}
+  .trust-g{grid-template-columns:1fr;gap:36px}
+  .trust-img{padding-bottom:20px;padding-right:20px}
+  .ct-g{grid-template-columns:1fr}
+  .team-g{grid-template-columns:repeat(2,1fr)}
+  .gal-g{grid-template-columns:repeat(2,1fr)}
+  .rv-g{grid-template-columns:repeat(2,1fr)}
+}
+
+/* Mobile */
+@media(max-width:768px){
+  html{font-size:15px}
+  section{padding:52px 0}
+  .wrap{padding:0 16px}
+
+  /* Header */
+  .hdr{padding:11px 0;gap:10px}
+  .logo-img{height:34px;max-width:140px}
+  nav{display:none}
+  .burger{display:block}
+  .hdr-status{display:none}
+  .hdr-phone{font-size:14px}
+  .hdr-r{gap:8px}
+
+  /* Hero */
+  .hero{padding:88px 0 48px;min-height:auto}
+  .hero-inner{grid-template-columns:1fr;gap:24px}
+  .hero h1{font-size:26px;line-height:1.22}
+  .hero-sub{font-size:15px;margin-bottom:20px}
+  .hero-line{margin:14px 0 16px}
+  .hero-fs{gap:9px;margin-bottom:22px}
+  .hf-row{font-size:13px}
+  .hero-cta{flex-direction:column;gap:10px}
+  .btn{width:100%;justify-content:center;padding:14px 18px}
+  .hform{padding:20px 16px}
+  .hf-ttl{font-size:14px}
+  .hf-sub{font-size:12px;margin-bottom:16px}
+
+  /* Stats */
+  .sbar{grid-template-columns:repeat(2,1fr)}
+  .sb{padding:18px 14px}
+  .sb-n{font-size:26px}
+  .sb-l{font-size:11px;margin-top:5px}
+
+  /* Services */
+  .sv-g{grid-template-columns:1fr;gap:1px}
+  .sv{padding:22px 18px}
+  .sv-ic{font-size:26px;margin-bottom:10px}
+  .sv h3{font-size:15px}
+  .sv p{font-size:13px}
+  .sv-pr .pr{font-size:20px}
+
+  /* Gallery */
+  .gal-sec{padding:44px 0}
+  .gal-g{grid-template-columns:1fr;gap:3px}
+  .gal-item{aspect-ratio:16/9}
+
+  /* Team */
+  .team-g{grid-template-columns:1fr;gap:20px}
+  .tm-ph{aspect-ratio:4/3}
+
+  /* Trust */
+  .trust-g{grid-template-columns:1fr;gap:24px}
+  .trust-img{padding:0}
+  .trust-badge{position:static;display:inline-block;margin-top:14px}
+  .tl{font-size:13px}
+
+  /* Prices */
+  .pr-row{padding:12px 14px;flex-wrap:wrap;gap:4px}
+  .pr-nm strong{font-size:13px}
+  .pr-nm small{font-size:11px}
+  .pr-v{font-size:15px;width:100%}
+  .pr-row.hd{display:none}
+
+  /* How */
+  .how-g{grid-template-columns:1fr;gap:1px}
+  .hw{padding:20px 16px}
+  .hw-n{font-size:44px}
+  .hw h3{font-size:14px}
+  .hw p{font-size:13px}
+
+  /* Reviews */
+  .rv-g{grid-template-columns:1fr;gap:12px}
+  .rv{padding:18px 16px}
+  .rv p{font-size:13px}
+
+  /* Contact */
+  .ct-g{grid-template-columns:1fr;gap:24px}
+  .ct-form{padding:20px 16px}
+  .ct-form h3{font-size:16px;margin-bottom:16px}
+  .ct-item{padding:11px 13px}
+  .ct-ic{font-size:16px;width:28px}
+
+  /* Footer */
+  .ft{flex-direction:column;gap:18px}
+  .ft-info{text-align:left}
+
+  /* Floats */
+  .fl{display:none}
+  .mob-call{display:flex}
+  body{padding-bottom:58px}
+}
+
+/* Small phones */
+@media(max-width:480px){
+  .wrap{padding:0 13px}
+  section{padding:40px 0}
+
+  .hero{padding:76px 0 40px}
+  .hero h1{font-size:22px}
+  .hero-sub{font-size:14px}
+  .hero-eyebrow{font-size:10px}
+  .hf-row{font-size:12px}
+  .hf-ic{width:24px;height:24px;font-size:12px}
+
+  .sbar{grid-template-columns:repeat(2,1fr)}
+  .sb-n{font-size:22px}
+  .sb{padding:14px 10px}
+  .sb-l{font-size:10px}
+
+  .hform,.ct-form{padding:16px 13px}
+  .fg input,.fg select,.fg textarea{font-size:14px;padding:10px 11px}
+  .fbtn{font-size:13px;padding:13px}
+
+  .rv{padding:14px 13px}
+  .av{width:36px;height:36px;font-size:14px}
+
+  .mob-call{font-size:14px;padding:13px 16px}
+  .logo-img{height:28px;max-width:110px}
+  .hdr-phone{font-size:13px}
+  .hdr-r{gap:6px}
+}
+
+/* ── SUCCESS MODAL ── */
+.sm-ov{position:fixed;inset:0;background:rgba(10,24,40,.7);backdrop-filter:blur(6px);
+  z-index:500;display:flex;align-items:center;justify-content:center;padding:20px;
+  opacity:0;pointer-events:none;transition:.3s ease}
+.sm-ov.on{opacity:1;pointer-events:all}
+.sm-box{background:#fff;max-width:440px;width:100%;padding:44px 40px;text-align:center;
+  position:relative;transform:translateY(18px) scale(.97);transition:.35s cubic-bezier(.34,1.56,.64,1);
+  box-shadow:0 24px 80px rgba(0,0,0,.3)}
+.sm-ov.on .sm-box{transform:translateY(0) scale(1)}
+.sm-box::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,var(--blue-dk),var(--blue-md))}
+.sm-icon{width:72px;height:72px;background:linear-gradient(135deg,#16A34A,#15803D);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  margin:0 auto 22px;box-shadow:0 8px 24px rgba(22,163,74,.35)}
+.sm-icon svg{stroke:#fff;width:34px;height:34px}
+.sm-title{font-family:'PT Serif',serif;font-size:26px;font-weight:700;color:#1C2B3A;margin-bottom:10px}
+.sm-sub{font-size:15px;color:var(--ink-lite);line-height:1.7;margin-bottom:28px}
+.sm-info{display:flex;flex-direction:column;gap:8px;margin-bottom:28px}
+.sm-row{display:flex;align-items:center;gap:10px;background:var(--sky);
+  border:1px solid var(--bdr);padding:11px 16px;text-align:left}
+.sm-row .sr-ic{font-size:18px;flex-shrink:0}
+.sm-row .sr-txt{font-size:13px;color:var(--ink-mid);line-height:1.5}
+.sm-row .sr-txt strong{display:block;font-size:12px;font-weight:700;color:var(--ink);margin-bottom:1px}
+.sm-close{width:100%;padding:14px;background:var(--blue);color:#fff;
+  font-family:'Inter',sans-serif;font-size:14px;font-weight:700;border:none;
+  cursor:pointer;transition:var(--t);letter-spacing:.04em}
+.sm-close:hover{background:var(--blue-dk)}
+.sm-dismiss{font-size:12px;color:var(--ink-lite);margin-top:12px;cursor:pointer;
+  display:block;transition:var(--t)}
+.sm-dismiss:hover{color:var(--ink)}
+@media(max-width:480px){
+  .sm-box{padding:32px 20px}
+  .sm-title{font-size:22px}
+}
+
+/* Hero form: hidden on mobile, shown as separate section */
+@media(max-width:768px){
+  .hform-hero-wrap{display:none}
+  .hero-mobile-form{display:block}
+}
+@media(min-width:769px){
+  .hero-mobile-form{display:none}
+}
+.hero-mobile-form{
+  background:#fff;padding:28px 16px 32px;
+  border-top:3px solid var(--blue);
+}
+.hero-mobile-form .hf-ttl{font-size:16px;font-weight:800;color:#1C2B3A;margin-bottom:4px;text-align:center}
+.hero-mobile-form .hf-sub{font-size:13px;color:var(--ink-lite);margin-bottom:18px;text-align:center}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="wrap">
+    <div class="hdr">
+      <!-- ЛОГОТИП: положите logo.png рядом с файлом .html -->
+      <a href="#" class="logo">
+        <img src="logo.png" alt="НордВестГаз" class="logo-img"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="logo-fallback" style="display:none">
+          <div class="logo-badge">НВГ</div>
+          <div>НордВестГаз<span class="logo-sub">ООО · ИНН 5024169615</span></div>
+        </div>
+        <div class="logo-text-only" style="display:none">
+          НордВестГаз<span class="logo-sub">ООО · ИНН 5024169615</span>
+        </div>
+      </a>
+      <nav>
+        <a href="#services">Услуги</a>
+        <a href="#prices">Цены</a>
+        <a href="#team">О нас</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#contact">Контакты</a>
+      </nav>
+      <div class="hdr-r">
+        <div class="hdr-status"><div class="dot"></div>Работаем сейчас</div>
+        <a href="tel:+79998698523" class="hdr-phone">+7-999-869-85-23</a>
+        <button class="burger" onclick="toggleMenu()">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<!-- Положите файл hero-bg.jpg в ту же папку — он подставится автоматически -->
+<section class="hero" id="home">
+  <div class="hero-fallback"></div>
+  <div class="hero-bg"></div>
+  <div class="hero-noise"></div>
+  <div class="wrap">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow a"><span></span>Северо-запад Москвы и МО</div>
+        <h1 class="a a1">Котёл не греет.<br>Колонка не зажигается.<br><em>Вызовите мастера.</em></h1>
+        <div class="hero-line a a2"></div>
+        <p class="hero-sub a a2">Профессиональный ремонт газового оборудования. Официальный договор, лицензированные специалисты, гарантия 12 месяцев.</p>
+        <div class="hero-fs a a3">
+          <div class="hf-row"><div class="hf-ic">🛡️</div>Лицензия и все разрешительные документы</div>
+          <div class="hf-row"><div class="hf-ic">📋</div>Официальный договор и акт выполненных работ</div>
+          <div class="hf-row"><div class="hf-ic">⚡</div>Работаем 24/7, выезд в день обращения</div>
+          <div class="hf-row"><div class="hf-ic">✅</div>Гарантия 12 месяцев на все виды работ</div>
+        </div>
+        <div class="hero-cta a a4">
+          <a href="tel:+79998698523" class="btn btn-wh">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 5.18a2 2 0 012-2.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            Позвонить сейчас
+          </a>
+          <a href="#contact" class="btn btn-ghost">Оставить заявку</a>
+        </div>
+      </div>
+      <div class="hform-hero-wrap"><div class="hform a a2">
+        <div class="hf-ttl">Вызвать мастера</div>
+        <div class="hf-sub">Свяжемся с вами в рабочее время. Диагностика бесплатно.</div>
+        <div class="fg"><label>Ваше имя</label><input type="text" placeholder="Иван Петрович" autocomplete="name"></div>
+        <div class="fg"><label>Телефон *</label><input type="tel" placeholder="+7 (___) ___-__-__" autocomplete="tel"></div>
+        <div class="fg"><label>Тип оборудования</label>
+          <select><option value="">— Выберите —</option><option>Газовый котёл</option><option>Газовая колонка</option><option>Газовая плита</option><option>Варочная панель</option><option>Техобслуживание</option><option>Продление договора</option><option>Другое</option></select>
+        </div>
+        <button class="fbtn" onclick="submitForm(this)">Жду звонка мастера</button>
+        <p class="fnote">Нажимая кнопку, вы соглашаетесь с <a href="#" style="color:var(--blue)">политикой конфиденциальности</a></p>
+        <div class="fdiv"><span>или позвоните напрямую</span></div>
+        <a href="tel:+79998698523" class="fph">
+          <span style="font-size:22px">📞</span>
+          <div><small>Диспетчер, круглосуточно</small><strong>+7-999-869-85-23</strong></div>
+        </a>
+        <a href="https://wa.me/79998698523" class="fwa" target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Написать в WhatsApp
+        </a>
+      </div></div><!-- /hform-hero-wrap -->
+    </div>
+  </div>
+</section>
+
+<!-- MOBILE FORM (below hero, only on phones) -->
+<div class="hero-mobile-form">
+  <div class="wrap">
+    <div class="hf-ttl">Вызвать мастера</div>
+    <div class="hf-sub">Свяжемся с вами в рабочее время. Диагностика бесплатно.</div>
+    <div class="fg"><label>Ваше имя</label><input type="text" placeholder="Иван Петрович" autocomplete="name"></div>
+    <div class="fg"><label>Телефон *</label><input type="tel" placeholder="+7 (___) ___-__-__" autocomplete="tel"></div>
+    <div class="fg">
+      <label>Что сломалось?</label>
+      <select><option value="">— Выберите —</option><option>Газовый котёл</option><option>Газовая колонка</option><option>Газовая плита</option><option>Техобслуживание</option><option>Другое</option></select>
+    </div>
+    <button class="fbtn" onclick="submitForm(this)" style="width:100%">Жду звонка мастера</button>
+    <p class="fnote" style="margin-top:10px">Или позвоните: <a href="tel:+79998698523" style="color:var(--blue);font-weight:700">+7-999-869-85-23</a></p>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="sbar">
+  <div class="sb"><span class="sb-n">7+</span><div class="sb-l">лет на рынке<br>с 2017 года</div></div>
+  <div class="sb"><span class="sb-n">1 500+</span><div class="sb-l">выполненных<br>ремонтов</div></div>
+  <div class="sb"><span class="sb-n">12 мес.</span><div class="sb-l">гарантия на<br>все виды работ</div></div>
+  <div class="sb"><span class="sb-n">24/7</span><div class="sb-l">режим работы<br>без выходных</div></div>
+</div>
+
+<!-- SERVICES -->
+<section id="services" style="background:#fff">
+  <div class="wrap">
+    <div style="margin-bottom:44px"><div class="lbl">Наши услуги</div>
+      <h2 style="font-size:clamp(26px,3vw,42px);max-width:560px">Ремонт и обслуживание газового оборудования</h2>
+    </div>
+    <div class="sv-g">
+      <div class="sv"><span class="sv-ic">🔥</span><h3>Ремонт газовых котлов</h3><p>Не запускается, выдаёт ошибку, не греет — устраним любую неисправность в день обращения.</p><div class="sv-pr"><span class="fr">от</span><span class="pr">1 500</span><span class="cu">руб.</span></div><div class="sv-brands"><span class="brand">Vaillant</span><span class="brand">Bosch</span><span class="brand">Baxi</span><span class="brand">Protherm</span></div></div>
+      <div class="sv"><span class="sv-ic">🚿</span><h3>Ремонт газовых колонок</h3><p>Колонка не зажигается, гаснет, течёт — найдём причину и устраним.</p><div class="sv-pr"><span class="fr">от</span><span class="pr">1 500</span><span class="cu">руб.</span></div><div class="sv-brands"><span class="brand">Нева</span><span class="brand">Балтгаз</span><span class="brand">Bosch</span><span class="brand">Junkers</span></div></div>
+      <div class="sv"><span class="sv-ic">🍳</span><h3>Ремонт газовых плит</h3><p>Не зажигается горелка, сломан кран, не работает розжиг — ремонт на кухне в тот же день.</p><div class="sv-pr"><span class="fr">от</span><span class="pr">1 500</span><span class="cu">руб.</span></div><div class="sv-brands"><span class="brand">Gefest</span><span class="brand">Gorenje</span><span class="brand">Electrolux</span></div></div>
+      <div class="sv"><span class="sv-ic">📋</span><h3>Техническое обслуживание</h3><p>Ежегодное ТО по Правилам пользования газом. Официальный договор, документы в Мособлгаз.</p><div class="sv-pr"><span class="fr">от</span><span class="pr">2 500</span><span class="cu">руб.</span></div><div class="sv-brands"><span class="brand">Договор</span><span class="brand">2 выезда включено</span></div></div>
+      <div class="sv"><span class="sv-ic">📄</span><h3>Продление договора</h3><p>Оформление и продление договора с Мособлгазом. Сами передаём документы — без очередей.</p><div class="sv-pr"><span class="fr">от</span><span class="pr">3 000</span><span class="cu">руб.</span></div><div class="sv-brands"><span class="brand">Мособлгаз</span><span class="brand">Жилинспекция</span></div></div>
+      <div class="sv"><span class="sv-ic">🔄</span><h3>Промывка и чистка</h3><p>Промывка теплообменника, чистка горелок и фильтров. Продлеваем ресурс оборудования.</p><div class="sv-pr"><span class="fr">от</span><span class="pr">3 000</span><span class="cu">руб.</span></div><div class="sv-brands"><span class="brand">Котлы</span><span class="brand">Колонки</span><span class="brand">Плиты</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<!--
+  Положите фото работ в ту же папку что и .html:
+  work1.jpg, work2.jpg, work3.jpg, work4.jpg, work5.jpg, work6.jpg
+  Если файл отсутствует — покажется серая заглушка с подсказкой
+-->
+<section class="gal-sec">
+  <div class="wrap">
+    <div class="lbl" style="color:rgba(255,255,255,.45);border-color:rgba(255,255,255,.2)">Наши работы</div>
+    <h2 style="color:#fff;font-size:clamp(24px,3vw,40px);max-width:520px">Примеры выполненных ремонтов</h2>
+  </div>
+  <div class="gal-g">
+    <div class="gal-item"><img src="work1.jpg" alt="Ремонт котла" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="gal-ph" style="display:none"><div class="pi">📷</div><div class="pt">work1.jpg</div></div><div class="gal-ov"><div class="gal-cap">Ремонт котла Vaillant</div></div></div>
+    <div class="gal-item"><img src="work2.jpg" alt="Замена теплообменника" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="gal-ph" style="display:none"><div class="pi">📷</div><div class="pt">work2.jpg</div></div><div class="gal-ov"><div class="gal-cap">Замена теплообменника</div></div></div>
+    <div class="gal-item"><img src="work3.jpg" alt="Диагностика" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="gal-ph" style="display:none"><div class="pi">📷</div><div class="pt">work3.jpg</div></div><div class="gal-ov"><div class="gal-cap">Диагностика котла Baxi</div></div></div>
+    <div class="gal-item"><img src="work4.jpg" alt="Ремонт плиты" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="gal-ph" style="display:none"><div class="pi">📷</div><div class="pt">work4.jpg</div></div><div class="gal-ov"><div class="gal-cap">Ремонт газовой плиты</div></div></div>
+    <div class="gal-item"><img src="work5.jpg" alt="Промывка теплообменника" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="gal-ph" style="display:none"><div class="pi">📷</div><div class="pt">work5.jpg</div></div><div class="gal-ov"><div class="gal-cap">Промывка теплообменника</div></div></div>
+    <div class="gal-item"><img src="work6.jpg" alt="Техобслуживание" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="gal-ph" style="display:none"><div class="pi">📷</div><div class="pt">work6.jpg</div></div><div class="gal-ov"><div class="gal-cap">Техническое обслуживание</div></div></div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<!--
+  Положите фото специалистов:
+  master1.jpg — фото Виноградова А.Ю. или любого мастера
+  master2.jpg — фото второго специалиста
+  cert.jpg    — фото документов / сертификатов / на фоне оборудования
+-->
+<section id="team" style="background:#fff">
+  <div class="wrap">
+    <div style="margin-bottom:48px"><div class="lbl">Наши специалисты</div>
+      <h2 style="font-size:clamp(26px,3vw,40px)">Лицензированные мастера<br>с официальными допусками</h2>
+    </div>
+    <div class="team-g">
+      <div class="tm">
+        <div class="tm-ph">
+          <img src="master1.jpg" alt="Виноградов Алексей Юрьевич" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="tm-ph-pl" style="display:none"><div class="pi">👷</div><div class="pt">master1.jpg</div></div>
+        </div>
+        <div class="tm-role">Главный инженер</div>
+        <h3>Виноградов Алексей Юрьевич</h3>
+        <p>Главный инженер ООО «НордВестГаз». Стаж работы с газовым оборудованием — более 15 лет.</p>
+        <div class="tm-cert">✅ Допуск к работе с газом</div>
+      </div>
+      <div class="tm">
+        <div class="tm-ph">
+          <img src="master2.jpg" alt="Мастер за работой" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="tm-ph-pl" style="display:none"><div class="pi">👷</div><div class="pt">master2.jpg</div></div>
+        </div>
+        <div class="tm-role">Мастер по ремонту</div>
+        <h3>Специалист по котлам</h3>
+        <p>Ремонт настенных и напольных котлов всех марок. Сертифицированный специалист Vaillant и Baxi.</p>
+        <div class="tm-cert">✅ Сертификат Vaillant</div>
+      </div>
+      <div class="tm">
+        <div class="tm-ph">
+          <img src="cert.jpg" alt="Документы компании" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="tm-ph-pl" style="display:none"><div class="pi">📜</div><div class="pt">cert.jpg<br>Фото документов<br>или сертификатов</div></div>
+        </div>
+        <div class="tm-role">Документы</div>
+        <h3>Все необходимые разрешения</h3>
+        <p>Лицензии, допуски, соглашения с Мособлгазом. Работаем официально — вы получаете договор и акт.</p>
+        <div class="tm-cert">📋 Свидетельство СРО</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST + DOCS PHOTO -->
+<!--
+  docs.jpg — фото документов, стол с папками, офис или мастер с планшетом
+-->
+<section style="background:var(--sky);border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr)">
+  <div class="wrap">
+    <div class="trust-g">
+      <div>
+        <div class="lbl">Почему нам доверяют</div>
+        <h2>Официальная компания с полным пакетом документов</h2>
+        <p>ООО «НордВестГаз» работает с 2017 года и имеет все разрешительные документы для работы с газовым оборудованием.</p>
+        <div class="tl-list">
+          <div class="tl"><div class="tl-chk"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Лицензия на монтаж и ремонт газового оборудования</div>
+          <div class="tl"><div class="tl-chk"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Договор с АО «Мособлгаз» и Жилинспекцией</div>
+          <div class="tl"><div class="tl-chk"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Страхование гражданской ответственности</div>
+          <div class="tl"><div class="tl-chk"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Официальный договор и акт по каждому заказу</div>
+          <div class="tl"><div class="tl-chk"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Гарантийный талон 12 месяцев на все работы</div>
+        </div>
+      </div>
+      <div class="trust-img">
+        <img src="docs.jpg" alt="Документы НордВестГаз" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="trust-img-pl" style="display:none"><div class="pi">📂</div><div class="pt">docs.jpg<br>Фото документов или офиса</div></div>
+        <div class="trust-badge"><strong>7+</strong><span>лет на рынке</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICES -->
+<section id="prices" style="background:#fff">
+  <div class="wrap">
+    <div style="margin-bottom:44px"><div class="lbl">Стоимость работ</div>
+      <h2 style="font-size:clamp(26px,3vw,40px)">Прозрачный прайс без скрытых доплат</h2>
+      <p style="color:var(--ink-mid);margin-top:12px;font-size:15px">Точная стоимость определяется после диагностики. Цена называется до начала работ — без сюрпризов.</p>
+    </div>
+    <div class="pr-tbl">
+      <div class="pr-row hd"><div class="pr-lbl">Услуга / вид работы</div><div class="pr-lbl">Стоимость работы</div></div>
+      <div class="pr-row"><div class="pr-nm"><strong>Диагностика на дому</strong><small>При заказе ремонта — бесплатно</small></div><div class="pr-v free">Бесплатно <span class="pr-bdg">Акция</span></div></div>
+      <div class="pr-row"><div class="pr-nm"><strong>Замена термопары / термостата</strong><small>Котлы и колонки всех марок</small></div><div class="pr-v">от 1 500 ₽</div></div>
+      <div class="pr-row"><div class="pr-nm"><strong>Ремонт / замена розжига</strong><small>Электроника, пьезоэлемент, электрод</small></div><div class="pr-v">от 2 000 ₽</div></div>
+      <div class="pr-row"><div class="pr-nm"><strong>Замена теплообменника</strong><small>Первичный и вторичный</small></div><div class="pr-v">от 4 500 ₽</div></div>
+      <div class="pr-row"><div class="pr-nm"><strong>Промывка теплообменника</strong><small>Химическая очистка от накипи</small></div><div class="pr-v">от 3 000 ₽</div></div>
+      <div class="pr-row"><div class="pr-nm"><strong>Ремонт горелки / форсунок</strong><small>Плиты, колонки, котлы</small></div><div class="pr-v">от 2 000 ₽</div></div>
+      <div class="pr-row"><div class="pr-nm"><strong>Техническое обслуживание</strong><small>Договор + 2 бесплатных выезда/год</small></div><div class="pr-v">от 2 500 ₽</div></div>
+      <div class="pr-row"><div class="pr-nm"><strong>Ночной / срочный выезд</strong><small>22:00–8:00, по согласованию</small></div><div class="pr-v">+500 ₽</div></div>
+    </div>
+    <p class="pr-note">Пенсионерам — скидка 10% на все виды работ &nbsp;·&nbsp; Стоимость запчастей согласовывается до начала ремонта</p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section style="background:var(--sky);border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr)">
+  <div class="wrap">
+    <div style="margin-bottom:44px"><div class="lbl">Порядок работы</div>
+      <h2 style="font-size:clamp(26px,3vw,40px)">4 шага от звонка до гарантии</h2>
+    </div>
+    <div class="how-g">
+      <div class="hw"><div class="hw-n">01</div><span class="hw-ic">📞</span><h3>Звонок или заявка</h3><p>Позвоните или оставьте заявку онлайн. Уточним проблему и запишем на удобное время.</p></div>
+      <div class="hw"><div class="hw-n">02</div><span class="hw-ic">🚗</span><h3>Выезд мастера</h3><p>Мастер приедет в согласованное время. Работаем по всему Северо-западу МО, в том числе ночные выезды.</p></div>
+      <div class="hw"><div class="hw-n">03</div><span class="hw-ic">🔧</span><h3>Диагностика и ремонт</h3><p>Диагностика бесплатна при заказе ремонта. Называем точную стоимость до начала работ — без скрытых доплат.</p></div>
+      <div class="hw"><div class="hw-n">04</div><span class="hw-ic">📋</span><h3>Документы и гарантия</h3><p>Выдаём договор, акт выполненных работ и гарантийный талон на 12 месяцев. Документы в Мособлгаз — сами.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" style="background:#fff">
+  <div class="wrap">
+    <div style="margin-bottom:48px"><div class="lbl">Отзывы клиентов</div>
+      <h2 style="font-size:clamp(26px,3vw,40px)">Нам доверяют более 1 500 семей</h2>
+    </div>
+    <div class="rv-g">
+      <div class="rv"><div class="rv-top"><div class="av">С</div><div class="rv-meta"><strong>Сергей Михайлов</strong><span>Красногорск, март 2025</span></div></div><div class="rv-stars">★★★★★</div><p>Котёл Vaillant встал ночью, утром вызвал мастера. Приехал в согласованное время, нашёл неисправный датчик давления. Заменили на месте, всё официально с договором и актом.</p><span class="rv-dev">🔥 Vaillant turboTEC plus</span></div>
+      <div class="rv"><div class="rv-top"><div class="av">Е</div><div class="rv-meta"><strong>Елена Воронова</strong><span>Нахабино, январь 2025</span></div></div><div class="rv-stars">★★★★★</div><p>Колонка Нева не зажигалась. Другая компания сказала — менять. Здесь нашли неисправность в электроде и отремонтировали. Сэкономила значительную сумму.</p><span class="rv-dev">🚿 Нева 5514</span></div>
+      <div class="rv"><div class="rv-top"><div class="av">А</div><div class="rv-meta"><strong>Андрей Кузнецов</strong><span>Химки, февраль 2025</span></div></div><div class="rv-stars">★★★★★</div><p>Заключили договор на техническое обслуживание. Сами забрали документы и передали в Мособлгаз. Не нужно было никуда ехать. Профессионально и удобно.</p><span class="rv-dev">📋 Договор ТО</span></div>
+      <div class="rv"><div class="rv-top"><div class="av">О</div><div class="rv-meta"><strong>Ольга Степанова</strong><span>Дедовск, декабрь 2024</span></div></div><div class="rv-stars">★★★★★</div><p>Котёл встал в мороз. Мастер приехал в удобное время — запчасть была с собой. Починили за несколько часов. Гарантийный талон выдан на руки. Огромное спасибо!</p><span class="rv-dev">🔥 Bosch Gaz 6000W</span></div>
+      <div class="rv"><div class="rv-top"><div class="av">И</div><div class="rv-meta"><strong>Игорь Петров</strong><span>Красногорск, октябрь 2024</span></div></div><div class="rv-stars">★★★★★</div><p>Плита Gorenje — не зажигалась горелка. Мастер приехал в удобное время, почистил форсунки, отрегулировал. Цена разумная, результат отличный.</p><span class="rv-dev">🍳 Gorenje G6111XA</span></div>
+      <div class="rv"><div class="rv-top"><div class="av">Т</div><div class="rv-meta"><strong>Тамара Иванова</strong><span>Нахабино, август 2024</span></div></div><div class="rv-stars">★★★★★</div><p>Предоставили скидку 10% как пенсионерке. Алексей Юрьевич — настоящий профессионал своего дела. Котёл работает исправно уже более полугода.</p><span class="rv-dev">🔥 Protherm Gepard</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background:var(--sky);border-top:1px solid var(--bdr)">
+  <div class="wrap">
+    <div class="ct-g">
+      <div class="ct-info">
+        <div class="lbl">Контакты</div>
+        <h2 style="font-size:clamp(24px,3vw,38px)">Готовы выехать сегодня</h2>
+        <p>Работаем по Северо-западу Москвы и МО круглосуточно, без выходных. Звоните или оставьте заявку — свяжемся с вами.</p>
+        <div class="ct-list">
+          <div class="ct-item"><span class="ct-ic">📞</span><div><small>Диспетчер (24/7)</small><a href="tel:+79998698523">+7-999-869-85-23</a></div></div>
+          <div class="ct-item"><span class="ct-ic">📱</span><div><small>Второй номер</small><a href="tel:+79919525852">+7-991-952-58-52</a></div></div>
+          <div class="ct-item"><span class="ct-ic">👷</span><div><small>Инженер Виноградов А.Ю.</small><a href="tel:+79969791324">+7-996-979-13-24</a></div></div>
+          <div class="ct-item"><span class="ct-ic">✉️</span><div><small>Email</small><a href="/cdn-cgi/l/email-protection#abc2c5cdc4ebc5c4d9dfc3dcced8dfcccad185d9de"><span class="__cf_email__" data-cfemail="d6bfb8b0b996b8b9a4a2bea1b3a5a2b1b7acf8a4a3">[email&#160;protected]</span></a></div></div>
+          <div class="ct-item"><span class="ct-ic">📍</span><div><small>Адрес офиса</small><span>МО, Красногорский р-н, рп. Нахабино, ул. Институтская, 4б</span></div></div>
+          <div class="ct-item"><span class="ct-ic">🕐</span><div><small>Режим работы</small><span>Круглосуточно, 7 дней в неделю</span></div></div>
+        </div>
+      </div>
+      <div class="ct-form">
+        <h3>Оставить заявку</h3>
+        <div class="fg"><label>Ваше имя</label><input type="text" placeholder="Иван Петрович" autocomplete="name"></div>
+        <div class="fg"><label>Телефон *</label><input type="tel" placeholder="+7 (___) ___-__-__" autocomplete="tel"></div>
+        <div class="fg"><label>Тип оборудования</label><select><option value="">— Выберите —</option><option>Газовый котёл</option><option>Газовая колонка</option><option>Газовая плита</option><option>Варочная панель</option><option>Техобслуживание</option><option>Продление договора</option><option>Другое</option></select></div>
+        <div class="fg"><label>Опишите проблему</label><textarea placeholder="Кратко опишите, что произошло..." rows="3" style="resize:vertical"></textarea></div>
+        <button class="fbtn" onclick="submitForm(this)">Отправить заявку</button>
+        <p class="fnote">Нажимая кнопку, вы соглашаетесь с <a href="#" style="color:var(--blue)">политикой конфиденциальности</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUCCESS MODAL -->
+<div class="sm-ov" id="sm-ov" onclick="closeSm(event)">
+  <div class="sm-box">
+    <div class="sm-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <div class="sm-title">Заявка принята!</div>
+    <div class="sm-sub">Мы получили вашу заявку и свяжемся с вами в ближайшее время.</div>
+    <div class="sm-info">
+      <div class="sm-row">
+        <span class="sr-ic">📞</span>
+        <div class="sr-txt"><strong>Перезвоним вам</strong>Обычно в течение 15–30 минут в рабочее время</div>
+      </div>
+      <div class="sm-row">
+        <span class="sr-ic">🛡️</span>
+        <div class="sr-txt"><strong>Диагностика бесплатно</strong>При заказе ремонта — диагностика включена</div>
+      </div>
+      <div class="sm-row">
+        <span class="sr-ic">⚡</span>
+        <div class="sr-txt"><strong>Работаем 24/7</strong>Срочные выезды в любое время суток</div>
+      </div>
+    </div>
+    <button class="sm-close" onclick="closeSm()">Отлично, жду звонка</button>
+    <span class="sm-dismiss" onclick="closeSm()">Закрыть</span>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="ft">
+      <div>
+        <div class="ft-logo">НордВест<span>Газ</span></div>
+        <div class="ft-copy" style="margin-bottom:6px">© 2024 ООО «НордВестГаз». Все права защищены.</div>
+        <div class="ft-copy">ИНН 5024169615 · ОГРН 1165024058748</div>
+      </div>
+      <div class="ft-nav">
+        <a href="#services">Услуги</a><a href="#prices">Цены</a>
+        <a href="#team">О нас</a><a href="#reviews">Отзывы</a>
+        <a href="#contact">Контакты</a><a href="#">Политика конфиденциальности</a>
+      </div>
+      <div class="ft-info">МО, Красногорский р-н,<br>рп. Нахабино, ул. Институтская, д. 4б<br><a href="/cdn-cgi/l/email-protection#7d14131b123d13120f09150a180e091a1c07530f08"><span class="__cf_email__" data-cfemail="d6bfb8b0b996b8b9a4a2bea1b3a5a2b1b7acf8a4a3">[email&#160;protected]</span></a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATS (desktop) -->
+<div class="fl">
+  <div class="fl-g"><span class="fl-lbl">Позвонить</span><a href="tel:+79998698523" class="fl-btn fl-call">📞</a></div>
+  <div class="fl-g"><span class="fl-lbl">WhatsApp</span>
+    <a href="https://wa.me/79998698523" class="fl-btn fl-wa" target="_blank">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+  </div>
+  <div class="fl-g"><span class="fl-lbl">Telegram</span>
+    <a href="https://t.me/nordwestgaz" class="fl-btn fl-tg" target="_blank">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- STICKY (mobile) -->
+<a href="tel:+79998698523" class="mob-call">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 5.18a2 2 0 012-2.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+  Позвонить — +7-999-869-85-23
+</a>
+
+<!-- ERROR MODAL -->
+<div class="sm-ov" id="err-ov" onclick="closeErrM(event)">
+  <div class="sm-box">
+    <div class="sm-icon" style="background:linear-gradient(135deg,#DC2626,#B91C1C)">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </div>
+    <div class="sm-title" style="color:#B91C1C">Не удалось отправить</div>
+    <div class="sm-sub" id="err-msg">Проверьте правильность введённых данных</div>
+    <div class="sm-info">
+      <div class="sm-row">
+        <span class="sr-ic">📱</span>
+        <div class="sr-txt"><strong>Формат номера</strong>Введите 10 цифр номера, например: 9991234567</div>
+      </div>
+      <div class="sm-row">
+        <span class="sr-ic">📞</span>
+        <div class="sr-txt"><strong>Или позвоните напрямую</strong><a href="tel:+79998698523" style="color:var(--blue);font-weight:700">+7-999-869-85-23</a></div>
+      </div>
+    </div>
+    <button class="sm-close" style="background:#B91C1C" onclick="closeErrM()">Исправить</button>
+  </div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* ── PHONE MASK ── */
+function applyMask(el){
+  el.addEventListener('keydown', function(e){
+    // Allow: backspace, delete, tab, escape, arrows, home, end
+    if([8,9,27,46,35,36,37,38,39,40].includes(e.keyCode)) return;
+    // Block anything that isn't a digit
+    if(e.key && e.key.length===1 && !/\d/.test(e.key)) e.preventDefault();
+  });
+  el.addEventListener('input', function(){
+    let v = this.value.replace(/\D/g,'');
+    if(v.startsWith('8')) v = '7' + v.slice(1);
+    if(v.length && !v.startsWith('7')) v = '7' + v;
+    v = v.slice(0,11);
+    if(!v.length){ this.value=''; return; }
+    let f = '+7';
+    if(v.length > 1)  f += ' (' + v.slice(1,4);
+    if(v.length >= 4) f += ') ' + v.slice(4,7);
+    if(v.length >= 7) f += '-' + v.slice(7,9);
+    if(v.length >= 9) f += '-' + v.slice(9,11);
+    this.value = f;
+  });
+  el.addEventListener('paste', function(e){
+    e.preventDefault();
+    const pasted = (e.clipboardData||window.clipboardData).getData('text');
+    const digits = pasted.replace(/\D/g,'').slice(0,11);
+    const fakeEvent = { target: { value: digits } };
+    this.value = digits;
+    this.dispatchEvent(new Event('input'));
+  });
+  el.addEventListener('focus', function(){
+    if(!this.value) this.value = '+7 (';
+  });
+  el.addEventListener('blur', function(){
+    if(this.value === '+7 (') this.value = '';
+  });
+}
+document.querySelectorAll('input[type="tel"]').forEach(applyMask);
+
+/* ── MODALS ── */
+function showSm(){
+  document.getElementById('sm-ov').classList.add('on');
+  document.body.style.overflow='hidden';
+}
+function closeSm(e){
+  if(e && e.target!==document.getElementById('sm-ov')) return;
+  document.getElementById('sm-ov').classList.remove('on');
+  document.body.style.overflow='';
+}
+
+function showErrM(msg){
+  if(msg) document.getElementById('err-msg').textContent = msg;
+  document.getElementById('err-ov').classList.add('on');
+  document.body.style.overflow='hidden';
+}
+function closeErrM(e){
+  if(e && e.target!==document.getElementById('err-ov')) return;
+  document.getElementById('err-ov').classList.remove('on');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown', e=>{
+  if(e.key==='Escape'){
+    closeSm(); closeErrM();
+  }
+});
+
+/* ── FORM SUBMIT ── */
+async function submitForm(btn){
+  const form = btn.closest('.hform,.ct-form,.hero-mobile-form');
+  const ph   = form.querySelector('input[type="tel"]');
+  const digits = ph ? ph.value.replace(/\D/g,'') : '';
+
+  if(!ph || digits.length < 11){
+    // Highlight field
+    ph.style.borderColor='#EF4444';
+    ph.style.boxShadow='0 0 0 3px rgba(239,68,68,.12)';
+    setTimeout(()=>{ ph.style.borderColor=''; ph.style.boxShadow=''; }, 3000);
+    showErrM('Введите полный номер телефона — 10 цифр после +7');
+    ph.focus();
+    return;
+  }
+
+  const nameEl = form.querySelector('input[type="text"]');
+  const selEl  = form.querySelector('select');
+  const taEl   = form.querySelector('textarea');
+  const payload = {
+    name:  nameEl ? nameEl.value.trim() : '',
+    phone: ph.value.trim(),
+    type:  selEl && selEl.selectedIndex > 0 ? selEl.options[selEl.selectedIndex].text : '',
+    note:  taEl ? taEl.value.trim() : ''
+  };
+
+  const useApi = window.location.protocol !== 'file:';
+  if(useApi){
+    try{
+      const res = await fetch('/api/leads',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify(payload)
+      });
+      if(!res.ok) throw new Error('server');
+    } catch(e){
+      _saveLocal(payload);
+    }
+  } else {
+    _saveLocal(payload);
+  }
+
+  showSm();
+  const orig = btn.innerHTML;
+  btn.innerHTML = '✅ Заявка принята';
+  btn.style.background = '#16A34A';
+  btn.disabled = true;
+  setTimeout(()=>{
+    btn.innerHTML = orig;
+    btn.style.background = '';
+    btn.disabled = false;
+    form.querySelectorAll('input,textarea').forEach(i=>i.value='');
+    form.querySelectorAll('select').forEach(s=>s.selectedIndex=0);
+  }, 5000);
+}
+
+function _saveLocal(payload){
+  try{
+    const entry = {...payload, id:Date.now(), date:new Date().toLocaleString('ru-RU'), status:'new', trashedAt:null, opNote:''};
+    const raw = localStorage.getItem('nwg_leads');
+    const list = raw ? JSON.parse(raw) : [];
+    list.unshift(entry);
+    localStorage.setItem('nwg_leads', JSON.stringify(list));
+  } catch(e){ console.warn('localStorage недоступен:', e); }
+}
+
+/* ── BURGER MENU ── */
+let mo=false;
+function toggleMenu(){
+  const nav=document.querySelector('nav'); mo=!mo;
+  if(mo){
+    nav.style.cssText='display:flex;flex-direction:column;position:fixed;top:66px;left:0;right:0;z-index:99;background:rgba(255,255,255,.98);backdrop-filter:blur(16px);padding:16px 28px 24px;gap:0;border-bottom:1px solid #CDE0F2;box-shadow:0 8px 24px rgba(21,87,167,.1);';
+    nav.querySelectorAll('a').forEach(a=>a.style.cssText='padding:13px 0;font-size:15px;display:block;border-bottom:1px solid #EAF2FC;');
+  } else {
+    nav.removeAttribute('style');
+    nav.querySelectorAll('a').forEach(a=>a.removeAttribute('style'));
+  }
+}
+document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>{ if(mo) toggleMenu(); }));
+
+/* ── SCROLL ANIMATIONS ── */
+const io = new IntersectionObserver(entries=>entries.forEach(e=>{
+  if(e.isIntersecting){ e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }
+}),{threshold:0.12});
+document.querySelectorAll('.sv,.rv,.hw,.tm,.pr-row').forEach(el=>{
+  el.style.opacity='0'; el.style.transform='translateY(20px)';
+  el.style.transition='opacity .5s ease, transform .5s ease';
+  io.observe(el);
+});
+</script>
+</body>
+</html>
